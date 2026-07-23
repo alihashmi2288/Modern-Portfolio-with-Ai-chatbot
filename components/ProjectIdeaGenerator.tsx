@@ -20,8 +20,8 @@ const ProjectIdeaGenerator: React.FC = () => {
             const response = await ai.models.generateContent({
                 model: 'gemini-2.5-flash',
                 contents: `
-                    You are an expert project idea generator for a frontend developer's portfolio.
-                    The developer's skills include React, TypeScript, Next.js, Node.js, and Tailwind CSS.
+                    You are an expert project idea generator for a full-stack developer's portfolio.
+                    The developer's skills include React, Next.js, TypeScript, Flutter, Python, Node.js, FastAPI, and OpenAI SDK.
                     Generate a unique and interesting project idea. 
                     Base the idea on these keywords if provided: "${keywords}". 
                     If no keywords are provided, generate a creative idea based on the developer's skills.

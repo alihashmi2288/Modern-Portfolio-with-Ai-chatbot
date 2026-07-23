@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import { GithubIcon, LinkedinIcon, DownloadIcon } from './IconComponents';
 import type { SectionId } from '../types';
 
-const roles = ["Software Engineer.", "Creative Coder.", "AI Driven Developer."];
+const roles = ["Software Engineer.", "Full-Stack Developer.", "AI & Automation Developer."];
 
 const Typewriter: React.FC = () => {
     const [index, setIndex] = useState(0);
@@ -63,7 +63,7 @@ const Hero = forwardRef<HTMLElement, HeroProps>(({ onNavigate }, ref) => {
                     I'm a <Typewriter />
                 </h2>
                 <p className="mt-6 max-w-xl mx-auto text-lg text-slate-400">
-                    A passionate Software Engineering student building interactive web projects and exploring intelligent solutions with AI and Machine Learning.
+                    A Software Engineering student with hands-on experience in full-stack development, AI-powered applications, and automation.
                 </p>
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <button 

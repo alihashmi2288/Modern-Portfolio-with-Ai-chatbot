@@ -22,7 +22,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                     <a href="https://github.com/alihashmi2288" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
                         <GithubIcon className="w-8 h-8" />
                     </a>
-                    <a href="https://linkedin.com/in/alihashmi2288" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+                    <a href="https://linkedin.com/in/hashmiali2288" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
                         <LinkedinIcon className="w-8 h-8" />
                     </a>
                     <a href="mailto:hashmi.ali2288@gmail.com" className="text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">

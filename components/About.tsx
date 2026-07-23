@@ -39,13 +39,13 @@ const About = forwardRef<HTMLElement>((props, ref) => {
             <div className="grid md:grid-cols-5 gap-12 items-center">
                 <div className="md:col-span-3 text-slate-400 text-lg space-y-6">
                     <p>
-                        As a BS Software Engineering student at UBIT, Karachi University, I am building a strong foundation in technology and problem-solving, with a keen focus on creating elegant and efficient solutions.
+                        I'm a Software Engineering student at UBIT, University of Karachi (currently in my 5th semester), with hands-on experience in full-stack development, AI-powered applications, and automation.
                     </p>
                     <p>
-                        I am also enrolled in the Certified Cloud Applied Generative AI course under the Governor Sindh Pakistan Initiative, enhancing my expertise in AI applications and modern cloud architectures.
+                        Alongside my degree, I'm pursuing advanced specializations. I am enrolled in the Artificial Intelligence, Web 3.0 & Metaverse course under the Governor Sindh IT Initiative, and have completed certifications in Mobile Application Development (Flutter) from Jawan Pakistan and Amazon Private Label from NAVTTC.
                     </p>
                     <p>
-                         I am deeply committed to applying my skills to innovative projects that drive technological advancement and create meaningful user experiences.
+                        I am seeking an internship or entry-level opportunity where I can apply my skills in Python, Next.js, FastAPI, and Agentic AI to contribute to real-world projects and build premium, scalable solutions.
                     </p>
                     <div className="mt-8">
                          <a 

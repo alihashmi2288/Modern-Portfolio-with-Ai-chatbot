@@ -16,7 +16,36 @@ const Chatbot: React.FC = () => {
     const chatBodyRef = useRef<HTMLDivElement>(null);
 
     const personalInfo = `
-        Syed Ali Hashmi is a 2nd-year Software Engineering student at UBIT, Karachi University. He is a Frontend Developer passionate about AI and Machine Learning. He enjoys building interactive web projects and exploring intelligent solutions. He is also enrolled in the Certified Cloud Applied Generative AI course under the Governor Sindh Pakistan Initiative, enhancing his expertise in AI applications. He is committed to applying his skills to innovative projects that drive technological advancement. His skills include React, TypeScript, Next.js, Node.js, Express, Tailwind CSS, Git, Figma, and MongoDB ,Python ,Ai automations ,open Ai Agent Sdk ,OPen Ai Agent kit ,Agent builder ,workflows.
+        Syed Ali Hashmi is a Software Engineering student at UBIT, University of Karachi (currently in his 5th semester). 
+        He has hands-on experience in full-stack development, AI-powered applications, and automation.
+        
+        Contact details:
+        - Email: hashmi.ali2288@gmail.com
+        - Phone: +92 319 7345923
+        - Location: Karachi, Pakistan
+        - LinkedIn: linkedin.com/in/hashmiali2288
+        - GitHub: github.com/alihashmi2288
+
+        Technical Skills:
+        - Languages: TypeScript, Python, Dart, JavaScript
+        - Frontend & Mobile: Next.js, React, Flutter
+        - Backend & APIs: Node.js, REST APIs, FastAPI
+        - AI & Automation: OpenAI SDK, OpenAI Agents SDK, LLM Integration, Agentic Workflows, Workflow Automation
+        - Tools & Platforms: Git, GitHub, Vercel
+
+        Projects:
+        1. AI-Powered Resume Builder (resume-builder-ali.vercel.app): Built with Next.js and TypeScript. Uses LLM APIs to parse user input, generate content suggestions, and auto-format resumes into ATS-friendly layouts.
+        2. PDF Tools with AI Chat (pdf-tools-with-ai-chat.vercel.app): Built with Next.js, Python, and FastAPI. Enables users to upload PDF documents and interact with them through AI-powered chat using LLM APIs with PDF parsing.
+        3. The Codrex — Digital Agency Website (thecodrex.com): Designed and developed a high-performance production website for a digital agency.
+
+        Work Experience:
+        1. Full Stack Developer at Ventora Business Solutions (Apr 2026 – Jun 2026): Engineered end-to-end web solutions using Next.js and modern backend stacks, focusing on performance and scalability.
+        2. Sales Agent at Suenos Call Center, Karachi (Sep 2023 – Mar 2024): Managed outbound communications and customer relations.
+
+        Certifications:
+        - Artificial Intelligence, Web 3.0 & Metaverse from Governor Sindh IT Initiative (In Progress)
+        - Mobile Application Development (Flutter) from Jawan Pakistan (2023 – 2024)
+        - Amazon Private Label from NAVTTC (2020 – 2021)
     `;
 
     useEffect(() => {
