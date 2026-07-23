@@ -22,6 +22,14 @@ const projectsData: Project[] = [
         repoUrl: 'https://github.com/alihashmi2288',
     },
     {
+        title: 'Creative Realm Designs',
+        description: 'Designed and developed a premium, high-end digital agency landing page at the intersection of creative design and Web3 innovation. Features sleek obsidian dark mode, smooth scroll animations, glassmorphism UI components, dynamic statistics counters, and highly responsive page layouts.',
+        tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+        imageUrl: '/images/creative_realm_mockup.png',
+        liveUrl: 'https://creative-realm-designs.vercel.app/',
+        repoUrl: 'https://github.com/alihashmi2288/creative-Realm-Designs',
+    },
+    {
         title: 'The Codrex — Digital Agency Website',
         description: 'Designed and developed a production website for a digital agency using a high-performance architecture and custom UI/UX layouts.',
         tags: ['Next.js', 'Tailwind CSS', 'UI/UX Design', 'High Performance'],
