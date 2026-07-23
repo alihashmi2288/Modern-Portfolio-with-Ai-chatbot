@@ -37,7 +37,8 @@ const Chatbot: React.FC = () => {
         1. AI-Powered Resume Builder (resume-builder-ali.vercel.app): Built with Next.js and TypeScript. Uses LLM APIs to parse user input, generate content suggestions, and auto-format resumes into ATS-friendly layouts.
         2. PDF Tools with AI Chat (pdf-tools-with-ai-chat.vercel.app): Built with Next.js, Python, and FastAPI. Enables users to upload PDF documents and interact with them through AI-powered chat using LLM APIs with PDF parsing.
         3. Creative Realm Designs (creative-realm-designs.vercel.app): Designed and developed a premium, high-end digital agency landing page at the intersection of creative design and Web3 innovation. Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
-        4. The Codrex — Digital Agency Website (thecodrex.com): Designed and developed a high-performance production website for a digital agency.
+        4. Reverse Sales Tax Calculator (reversesalestaxcalculator.vercel.app): Developed an advanced financial utility web application to back-calculate pre-tax amounts from receipt totals. Built with Next.js, React, TypeScript, and Tailwind CSS.
+        5. The Codrex — Digital Agency Website (thecodrex.com): Designed and developed a high-performance production website for a digital agency.
 
         Work Experience:
         1. Full Stack Developer at Ventora Business Solutions (Apr 2026 – Jun 2026): Engineered end-to-end web solutions using Next.js and modern backend stacks, focusing on performance and scalability.

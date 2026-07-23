@@ -30,6 +30,14 @@ const projectsData: Project[] = [
         repoUrl: 'https://github.com/alihashmi2288/creative-Realm-Designs',
     },
     {
+        title: 'Reverse Sales Tax Calculator',
+        description: 'Developed an advanced financial utility web application to back-calculate pre-tax amounts from total receipts. Features multiple computation modes including Single Item, Multiple Items, Implied Rate Finder, and CSV Batch Processing. Includes preloaded tax rate databases for US states and international GST/VAT.',
+        tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'CSV Parsing', 'Vercel'],
+        imageUrl: '/images/reverse_tax_calculator_mockup.png',
+        liveUrl: 'https://reversesalestaxcalculator.vercel.app',
+        repoUrl: 'https://github.com/alihashmi2288/reversesalestaxcalculator',
+    },
+    {
         title: 'The Codrex — Digital Agency Website',
         description: 'Designed and developed a production website for a digital agency using a high-performance architecture and custom UI/UX layouts.',
         tags: ['Next.js', 'Tailwind CSS', 'UI/UX Design', 'High Performance'],
