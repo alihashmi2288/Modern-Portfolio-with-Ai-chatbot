@@ -5,6 +5,8 @@ export interface Project {
   description: string;
   tags: string[];
   imageUrl: string;
+  category?: 'AI & LLM' | 'Full-Stack' | 'Web3 & Agency' | 'Financial Tech';
+  featured?: boolean;
   liveUrl?: string;
   repoUrl?: string;
 }

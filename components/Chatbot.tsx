@@ -1,156 +1,278 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
-import { MessageSquareIcon, SendIcon } from './IconComponents';
+import { MessageSquareIcon, SendIcon, SparklesIcon } from './IconComponents';
 
 interface Message {
-    role: 'user' | 'model';
-    text: string;
+  role: 'user' | 'model';
+  text: string;
 }
 
+const QUICK_PROMPTS = [
+  "What are Syed's core skills?",
+  "Tell me about his AI Resume Builder",
+  "What is his education background?",
+  "How can I contact or hire Syed?",
+];
+
 const Chatbot: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([]);
-    const [userInput, setUserInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const chatRef = useRef<Chat | null>(null);
-    const chatBodyRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'model',
+      text: "👋 Hi there! I'm Syed's AI assistant. Ask me anything about his full-stack experience, AI projects, or how to get in touch!",
+    },
+  ]);
+  const [userInput, setUserInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const chatRef = useRef<Chat | null>(null);
+  const chatBodyRef = useRef<HTMLDivElement>(null);
 
-    const personalInfo = `
-        Syed Ali Hashmi is a Software Engineering student at UBIT, University of Karachi (currently in his 5th semester). 
-        He has hands-on experience in full-stack development, AI-powered applications, and automation.
-        
-        Contact details:
-        - Email: hashmi.ali2288@gmail.com
-        - Phone: +92 319 7345923
-        - Location: Karachi, Pakistan
-        - LinkedIn: linkedin.com/in/hashmiali2288
-        - GitHub: github.com/alihashmi2288
-
-        Technical Skills:
-        - Languages: TypeScript, Python, Dart, JavaScript
-        - Frontend & Mobile: Next.js, React, Flutter
-        - Backend & APIs: Node.js, REST APIs, FastAPI
-        - AI & Automation: OpenAI SDK, OpenAI Agents SDK, LLM Integration, Agentic Workflows, Workflow Automation
-        - Tools & Platforms: Git, GitHub, Vercel
-
-        Projects:
-        1. AI-Powered Resume Builder (resume-builder-ali.vercel.app): Built with Next.js and TypeScript. Uses LLM APIs to parse user input, generate content suggestions, and auto-format resumes into ATS-friendly layouts.
-        2. PDF Tools with AI Chat (pdf-tools-with-ai-chat.vercel.app): Built with Next.js, Python, and FastAPI. Enables users to upload PDF documents and interact with them through AI-powered chat using LLM APIs with PDF parsing.
-        3. Creative Realm Designs (creative-realm-designs.vercel.app): Designed and developed a premium, high-end digital agency landing page at the intersection of creative design and Web3 innovation. Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
-        4. Reverse Sales Tax Calculator (reversesalestaxcalculator.vercel.app): Developed an advanced financial utility web application to back-calculate pre-tax amounts from receipt totals. Built with Next.js, React, TypeScript, and Tailwind CSS.
-        5. The Codrex — Digital Agency Website (thecodrex.com): Designed and developed a high-performance production website for a digital agency.
-
-        Work Experience:
-        1. Full Stack Developer at Ventora Business Solutions (Apr 2026 – Jun 2026): Engineered end-to-end web solutions using Next.js and modern backend stacks, focusing on performance and scalability.
-        2. Sales Agent at Suenos Call Center, Karachi (Sep 2023 – Mar 2024): Managed outbound communications and customer relations.
-
-        Certifications:
-        - Artificial Intelligence, Web 3.0 & Metaverse from Governor Sindh IT Initiative (In Progress)
-        - Mobile Application Development (Flutter) from Jawan Pakistan (2023 – 2024)
-        - Amazon Private Label from NAVTTC (2020 – 2021)
-    `;
-
-    useEffect(() => {
-        if (isOpen && !chatRef.current) {
-            try {
-                // FIX: Use process.env.API_KEY as per coding guidelines and fix import.meta.env error.
-                const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-                chatRef.current = ai.chats.create({
-                    model: 'gemini-2.5-flash',
-                    config: {
-                        systemInstruction: `You are a friendly, professional AI assistant on Syed Ali Hashmi's portfolio website. Your purpose is to answer questions about him based on this info: ${personalInfo}. Keep answers concise. Never say you are an AI. If asked if 'you' can do something like build a website, answer about Syed's capabilities instead (e.g., "Syed is a skilled Next.js developer..."). If asked something unrelated, politely steer the conversation back to being about Syed. If you don't know the answer, say you don't have that information and suggest contacting Syed directly.`,
-                    },
-                });
-                setMessages([{ role: 'model', text: "Hello! I'm Syed's AI assistant. Ask me anything about his skills or projects." }]);
-            } catch (error) {
-                console.error("Failed to initialize chatbot:", error);
-                setMessages([{ role: 'model', text: "Sorry, I'm having trouble connecting right now. Please try again later." }]);
-            }
-        }
-    }, [isOpen, personalInfo]);
+  const personalInfo = `
+    Syed Ali Hashmi is a Software Engineering student at UBIT, University of Karachi (currently in his 6th semester). 
+    He specializes in full-stack development, AI-powered applications, and automation, operating at an intermediate engineering level.
     
-    useEffect(() => {
-        // Scroll to the bottom of the chat body when new messages are added
-        if (chatBodyRef.current) {
-            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    Contact:
+    - Email: hashmi.ali2288@gmail.com
+    - Phone: +92 319 7345923
+    - Location: Karachi, Pakistan
+    - LinkedIn: linkedin.com/in/hashmiali2288
+    - GitHub: github.com/alihashmi2288
+
+    Skills:
+    - Languages: TypeScript, Python, Dart, JavaScript
+    - Frontend: Next.js, React, Flutter, Tailwind CSS
+    - Backend: Node.js, FastAPI, REST APIs
+    - AI & Automation: OpenAI SDK, OpenAI Agents SDK, LLM Integration, Agentic Workflows
+    - Tools: Git, GitHub, Vercel
+
+    Key Projects:
+    1. AI-Powered Resume Builder (resume-builder-ali.vercel.app): Next.js, TypeScript, LLM APIs. Parses input and creates ATS-friendly resumes.
+    2. PDF Tools with AI Chat (pdf-tools-with-ai-chat.vercel.app): Next.js, Python, FastAPI. Upload PDFs and converse with document contents.
+    3. Creative Realm Designs (creative-realm-designs.vercel.app): High-end digital agency web3 landing page with obsidian dark mode and glassmorphism.
+    4. Reverse Sales Tax Calculator (reversesalestaxcalculator.vercel.app): Next.js & TypeScript financial utility.
+    5. The Codrex (thecodrex.com): Digital agency website with custom performant UI/UX.
+
+    Education & Certifications:
+    - BS Software Engineering (UBIT, University of Karachi, 6th Sem)
+    - Governor Sindh IT Initiative (GIAIC): AI, Web 3.0 & Metaverse
+    - Mobile Application Development (Flutter) from Jawan Pakistan
+    - NAVTTC Amazon Private Label certification
+  `;
+
+  useEffect(() => {
+    if (isOpen && !chatRef.current) {
+      try {
+        const apiKey = process.env.API_KEY || (typeof window !== 'undefined' && (window as unknown as { GEMINI_API_KEY?: string }).GEMINI_API_KEY);
+        if (apiKey) {
+          const ai = new GoogleGenAI({ apiKey });
+          chatRef.current = ai.chats.create({
+            model: 'gemini-2.5-flash',
+            config: {
+              systemInstruction: `You are a friendly, knowledgeable AI assistant on Syed Ali Hashmi's developer portfolio website. Answer questions based on this profile: ${personalInfo}. Keep answers concise, natural, and helpful (2-4 sentences max). If asked if you can build something, talk about Syed's capabilities. If asked for contact details, provide hashmi.ali2288@gmail.com or +92 319 7345923.`,
+            },
+          });
         }
-    }, [messages]);
+      } catch (error) {
+        console.warn('Chatbot live model setup deferred to fallback:', error);
+      }
+    }
+  }, [isOpen, personalInfo]);
 
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages, isLoading]);
 
-    const handleSendMessage = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!userInput.trim() || isLoading || !chatRef.current) return;
+  const getFallbackReply = (query: string): string => {
+    const q = query.toLowerCase();
+    if (q.includes('skill') || q.includes('tech') || q.includes('stack')) {
+      return "Syed's primary technical arsenal includes TypeScript, Next.js, React, Python, FastAPI, and OpenAI Agents SDK. He builds full-stack applications and automated AI workflows.";
+    }
+    if (q.includes('project') || q.includes('resume') || q.includes('pdf')) {
+      return "Among his notable projects are the AI-Powered Resume Builder (with ATS formats), PDF Tools with AI Chat (FastAPI + LLMs), and the Creative Realm Designs agency portal. You can view live demos above!";
+    }
+    if (q.includes('education') || q.includes('ubit') || q.includes('university') || q.includes('karachi')) {
+      return "Syed is a 6th-semester Software Engineering student at UBIT, University of Karachi. He is also enrolled in the prestigious Governor Sindh IT Initiative for AI & Web3.";
+    }
+    if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('phone')) {
+      return "You can reach Syed directly at hashmi.ali2288@gmail.com or call +92 319 7345923. He is currently open to full-stack, software engineering, and AI developer opportunities!";
+    }
+    return `Syed Ali Hashmi is a full-stack and AI developer from Karachi, Pakistan with expertise in Next.js, Python, and Agentic AI workflows. Feel free to contact him at hashmi.ali2288@gmail.com!`;
+  };
 
-        const userMessage: Message = { role: 'user', text: userInput };
-        setMessages(prev => [...prev, userMessage]);
-        setUserInput('');
-        setIsLoading(true);
+  const sendMessage = async (textToSend: string) => {
+    if (!textToSend.trim() || isLoading) return;
 
-        try {
-            const response = await chatRef.current.sendMessage({ message: userInput });
-            const modelMessage: Message = { role: 'model', text: response.text };
-            setMessages(prev => [...prev, modelMessage]);
-        } catch (error) {
-            console.error("Chatbot error:", error);
-            const errorMessage: Message = { role: 'model', text: "Oops! Something wrong. Please try again." };
-            setMessages(prev => [...prev, errorMessage]);
-        } finally {
-            setIsLoading(false);
+    const userMessage: Message = { role: 'user', text: textToSend };
+    setMessages((prev) => [...prev, userMessage]);
+    setUserInput('');
+    setIsLoading(true);
+
+    try {
+      if (chatRef.current) {
+        const response = await chatRef.current.sendMessage({ message: textToSend });
+        if (response.text) {
+          setMessages((prev) => [...prev, { role: 'model', text: response.text }]);
+          return;
         }
-    };
+      }
 
-    return (
-        <>
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-8 right-8 bg-cyan-500 text-white p-4 rounded-full shadow-lg shadow-cyan-500/30 hover:bg-cyan-600 transition-all duration-300 transform hover:scale-110 z-50"
-                aria-label="Toggle chatbot"
-            >
-                <MessageSquareIcon className="w-8 h-8" />
-            </button>
+      // Intelligent deterministic fallback
+      setTimeout(() => {
+        const reply = getFallbackReply(textToSend);
+        setMessages((prev) => [...prev, { role: 'model', text: reply }]);
+        setIsLoading(false);
+      }, 500);
+      return;
+    } catch (error) {
+      console.warn('Live API response failed, using smart fallback:', error);
+      const reply = getFallbackReply(textToSend);
+      setMessages((prev) => [...prev, { role: 'model', text: reply }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-            <div className={`fixed bottom-24 right-8 w-full max-w-sm h-full max-h-[600px] z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
-                <div className="h-full flex flex-col bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/40">
-                    <header className="p-4 border-b border-slate-700/50 flex justify-between items-center">
-                        <div>
-                            <h3 className="font-bold text-white">AI Assistant</h3>
-                            <p className="text-sm text-slate-400">Ask me about Syed</p>
-                        </div>
-                        <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white">&times;</button>
-                    </header>
-                    <div ref={chatBodyRef} className="flex-1 p-4 overflow-y-auto space-y-4">
-                        {messages.map((msg, index) => (
-                            <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <p className={`max-w-xs text-sm md:text-base py-2 px-4 rounded-2xl ${msg.role === 'user' ? 'bg-cyan-600 text-white rounded-br-none' : 'bg-slate-800 text-slate-300 rounded-bl-none'}`}>
-                                    {msg.text}
-                                </p>
-                            </div>
-                        ))}
-                        {isLoading && (
-                             <div className="flex justify-start">
-                                <p className="max-w-xs text-sm md:text-base py-2 px-4 rounded-2xl bg-slate-800 text-slate-300 rounded-bl-none">
-                                    <span className="animate-pulse">...</span>
-                                </p>
-                            </div>
-                        )}
-                    </div>
-                    <form onSubmit={handleSendMessage} className="p-4 border-t border-slate-700/50 flex items-center gap-2">
-                        <input
-                            type="text"
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                            placeholder="Type a message..."
-                            className="flex-grow bg-slate-800 border border-slate-700 rounded-full px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
-                            disabled={isLoading}
-                        />
-                        <button type="submit" disabled={isLoading} className="bg-cyan-500 text-white p-3 rounded-full hover:bg-cyan-600 disabled:bg-slate-600 transition-colors">
-                            <SendIcon className="w-5 h-5"/>
-                        </button>
-                    </form>
-                </div>
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMessage(userInput);
+  };
+
+  const clearChat = () => {
+    setMessages([
+      {
+        role: 'model',
+        text: "Chat cleared! What else would you like to know about Syed's work?",
+      },
+    ]);
+  };
+
+  return (
+    <>
+      {/* Floating Toggle Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold shadow-2xl shadow-cyan-500/40 hover:scale-110 active:scale-95 transition-all duration-300 group"
+        aria-label="Toggle AI Portfolio Assistant"
+      >
+        <div className="relative">
+          <MessageSquareIcon className="w-6 h-6 text-slate-950" />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950 animate-pulse"></span>
+        </div>
+      </button>
+
+      {/* Floating Chat Modal */}
+      <div
+        className={`fixed bottom-24 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[550px] max-h-[80vh] z-50 transition-all duration-300 ease-out origin-bottom-right ${
+          isOpen
+            ? 'opacity-100 scale-100 pointer-events-auto'
+            : 'opacity-0 scale-90 pointer-events-none'
+        }`}
+      >
+        <div className="h-full flex flex-col bg-slate-900/90 backdrop-blur-2xl border border-slate-700/70 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
+          {/* Header */}
+          <header className="p-4 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
+                <SparklesIcon className="w-4 h-4" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-100 text-sm flex items-center gap-1.5">
+                  <span>Ali's AI Agent</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 border border-cyan-500/30 text-cyan-300">
+                    Online
+                  </span>
+                </h3>
+                <p className="text-xs text-slate-400">Trained on Syed's background</p>
+              </div>
             </div>
-        </>
-    );
+            <div className="flex items-center gap-1">
+              <button
+                onClick={clearChat}
+                className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 text-xs"
+                title="Clear chat history"
+              >
+                Clear
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 text-lg leading-none"
+                aria-label="Close chat"
+              >
+                &times;
+              </button>
+            </div>
+          </header>
+
+          {/* Quick Prompts Carousel */}
+          <div className="px-3 py-2 bg-slate-950/40 border-b border-slate-800/60 flex gap-1.5 overflow-x-auto no-scrollbar">
+            {QUICK_PROMPTS.map((prompt, i) => (
+              <button
+                key={i}
+                onClick={() => sendMessage(prompt)}
+                className="shrink-0 text-[11px] font-medium px-2.5 py-1 rounded-full bg-slate-800/80 hover:bg-cyan-950/80 border border-slate-700/60 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-colors whitespace-nowrap"
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+
+          {/* Messages Body */}
+          <div ref={chatBodyRef} className="flex-1 p-4 overflow-y-auto space-y-3">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={`max-w-[85%] text-xs sm:text-sm py-2.5 px-3.5 rounded-2xl leading-relaxed ${
+                    msg.role === 'user'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-medium rounded-br-none shadow-md shadow-cyan-500/20'
+                      : 'bg-slate-800/80 text-slate-200 border border-slate-700/60 rounded-bl-none shadow-sm'
+                  }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="py-2 px-3 rounded-2xl bg-slate-800 text-slate-400 text-xs rounded-bl-none flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.2s]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.4s]"></div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Input Form */}
+          <form
+            onSubmit={handleSendMessage}
+            className="p-3 border-t border-slate-800 bg-slate-950/60 flex items-center gap-2"
+          >
+            <input
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              placeholder="Ask about projects, skills, roles..."
+              className="flex-grow bg-slate-900 border border-slate-800 rounded-full px-4 py-2 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all"
+              disabled={isLoading}
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !userInput.trim()}
+              className="p-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-40 transition-colors shadow-md shadow-cyan-500/25 shrink-0"
+              aria-label="Send message"
+            >
+              <SendIcon className="w-4 h-4" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Chatbot;

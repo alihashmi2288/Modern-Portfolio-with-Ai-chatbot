@@ -8,15 +8,17 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
+import { ToastProvider } from './components/Toast';
+import { useWebMCP } from './hooks/useWebMCP';
 
-export default function App() {
+function PortfolioApp() {
   const homeRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const skillsRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  const sectionRefs: Record<SectionId, React.RefObject<HTMLElement>> = {
+  const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
     home: homeRef,
     about: aboutRef,
     projects: projectsRef,
@@ -24,23 +26,39 @@ export default function App() {
     contact: contactRef,
   };
 
-  const scrollToSection = (sectionId: SectionId) => {
-    sectionRefs[sectionId].current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (sectionId: string) => {
+    const targetRef = sectionRefs[sectionId as SectionId];
+    if (targetRef && targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
+  // Register WebMCP tools for AI browser agents as per Modern Web Guidance
+  useWebMCP(scrollToSection);
+
   return (
-    <div className="bg-slate-950 text-slate-300 selection:bg-cyan-300 selection:text-cyan-900">
-      <div className="animated-bg"></div>
-      <Header onNavigate={scrollToSection} />
-      <main className="container mx-auto max-w-screen-lg px-6 md:px-12">
-        <Hero ref={homeRef} onNavigate={scrollToSection} />
+    <div className="min-h-screen bg-slate-950 text-slate-300 relative selection:bg-cyan-500/30 selection:text-cyan-200">
+      <Header onNavigate={(id) => scrollToSection(id)} />
+      <main className="container mx-auto max-w-screen-xl px-5 sm:px-8 md:px-12 relative z-10">
+        <Hero ref={homeRef} onNavigate={(id) => scrollToSection(id)} />
         <About ref={aboutRef} />
         <Skills ref={skillsRef} />
         <Projects ref={projectsRef} />
         <Contact ref={contactRef} />
       </main>
-      <Footer onNavigate={scrollToSection} />
+      <Footer onNavigate={(id) => scrollToSection(id)} />
       <Chatbot />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ToastProvider>
+      <PortfolioApp />
+    </ToastProvider>
   );
 }

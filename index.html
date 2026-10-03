@@ -1,67 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" style="color-scheme: dark;">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Syed Ali Hashmi | Frontend Developer</title>
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Syed Ali Hashmi - Software Engineer, Full-Stack Developer & AI Automation Specialist. Exploring modern web, Next.js, TypeScript, Python, and Agentic AI." />
+    <title>Syed Ali Hashmi | Software Engineer & AI Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --color-accent: #06b6d4;
+        --color-accent-hover: #0891b2;
+        --color-bg-deep: #020617;
+        --color-bg-card: rgba(15, 23, 42, 0.65);
+        color-scheme: dark;
+        accent-color: var(--color-accent);
+        scrollbar-color: #0891b2 #020617;
+      }
+
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Outfit', sans-serif;
+        background-color: #020617;
+        color: #cbd5e1;
+        overflow-x: hidden;
       }
-      /* Custom scrollbar for a more modern look */
-      ::-webkit-scrollbar {
-        width: 8px;
+
+      code, pre, .font-mono {
+        font-family: 'JetBrains Mono', monospace;
       }
-      ::-webkit-scrollbar-track {
-        background: #020617; 
+
+      /* Modern Typography Enhancements from Modern Web Guidance */
+      h1, h2, h3, h4, h5, h6 {
+        text-wrap: balance;
       }
-      ::-webkit-scrollbar-thumb {
-        background: #0891b2;
-        border-radius: 4px;
+
+      p, li, blockquote {
+        text-wrap: pretty;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #06b6d4;
+
+      /* Custom Modern Scrollbar */
+      @supports not (scrollbar-color: auto) {
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #020617; 
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #0891b2;
+          border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #06b6d4;
+        }
       }
-      .animated-bg {
-        width: 100%;
-        height: 100%;
+
+      /* Ambient Background Glow */
+      .ambient-spotlight {
         position: fixed;
+        pointer-events: none;
         top: 0;
         left: 0;
-        z-index: -1;
-        background: radial-gradient(circle, rgba(22, 78, 99, 0.3) 0%, rgba(2, 6, 23, 0) 60%);
-        animation: pulse 10s infinite ease-in-out;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(6, 182, 212, 0.12), transparent 45%),
+                    radial-gradient(900px circle at 80% 20%, rgba(37, 99, 235, 0.08), transparent 60%),
+                    radial-gradient(800px circle at 20% 80%, rgba(13, 148, 136, 0.08), transparent 60%);
       }
-      @keyframes pulse {
-        0% { transform: scale(0.8); opacity: 0.5; }
-        50% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(0.8); opacity: 0.5; }
+
+      /* Modern Glassmorphic Surfaces */
+      .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(51, 65, 85, 0.45);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
       }
-      .tilt-card {
-        transform-style: preserve-3d;
-        transition: transform 0.5s;
+
+      .glass-card-hover {
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
       }
-      .tilt-card:hover {
-        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+      .glass-card-hover:hover {
+        border-color: rgba(6, 182, 212, 0.55);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 35px -10px rgba(6, 182, 212, 0.15), 0 0 1px 1px rgba(6, 182, 212, 0.2);
       }
-      @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            filter: blur(5px);
+
+      /* Native Scroll-Driven Animations (Modern Web Guidance) */
+      @media (prefers-reduced-motion: no-preference) {
+        @supports ((animation-timeline: view()) and (animation-range: entry)) {
+          @keyframes revealEntry {
+            from {
+              opacity: 0;
+              transform: translateY(28px) scale(0.97);
+              filter: blur(4px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+              filter: blur(0);
+            }
+          }
+
+          .reveal-on-scroll {
+            animation: revealEntry 0.7s ease-out backwards;
+            animation-timeline: view();
+            animation-range: entry 5% cover 25%;
+          }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
-        }
       }
-      .animate-fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
+
+      /* Accessible Form Validation (Modern Web Guidance) */
+      .form-input:user-invalid,
+      .form-input.user-invalid-fallback {
+        border-color: #ef4444 !important;
+        box-shadow: 0 0 0 1px #ef4444 !important;
+      }
+
+      .form-input:user-valid:not(:placeholder-shown) {
+        border-color: #10b981 !important;
+      }
+
+      .form-input:user-invalid ~ .error-message,
+      .form-input.user-invalid-fallback ~ .error-message {
+        display: block !important;
+      }
+
+      /* Subtle gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 50%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .gradient-accent {
+        background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     </style>
 <script type="importmap">
@@ -77,8 +156,41 @@
 }
 </script>
 </head>
-<body class="bg-slate-950 text-slate-300">
+<body class="bg-slate-950 text-slate-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div class="ambient-spotlight" id="ambient-spotlight"></div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Ambient mouse tracking for subtle spotlight
+      window.addEventListener('pointermove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        document.documentElement.style.setProperty('--mouse-x', x + '%');
+        document.documentElement.style.setProperty('--mouse-y', y + '%');
+      }, { passive: true });
+
+      // Fallback for scroll-driven animations if not natively supported
+      if (!CSS.supports('((animation-timeline: view()) and (animation-range: entry))')) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-in');
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+        window.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+          });
+        });
+      }
+    </script>
 </body>
 </html>
