@@ -72,28 +72,31 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <Section ref={ref} id="skills">
+      {/* Header with Technical Eyebrow */}
       <div className="text-center mb-10 reveal-on-scroll">
-        <span className="text-cyan-400 font-mono text-sm tracking-wider uppercase">Capabilities</span>
-        <h2 className="text-3xl sm:text-5xl font-black text-slate-100 tracking-tight mt-2">
-          My Tech <span className="gradient-text">Arsenal</span>
+        <span className="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] font-medium block">
+          // CAPABILITIES & TECH ARSENAL
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-[#171717] tracking-[-1.28px] mt-2">
+          Technical Arsenal
         </h2>
-        <p className="mt-4 max-w-xl mx-auto text-slate-400 text-base">
+        <p className="mt-2.5 max-w-xl mx-auto text-[#4d4d4d] text-base">
           A targeted stack honed for modern web engineering, performant backends, and autonomous AI systems.
         </p>
       </div>
 
       {/* Filter Tabs & Search Controls */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 max-w-5xl mx-auto">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 max-w-5xl mx-auto">
+        {/* Category Pills: rounded-[64px] */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-[64px] bg-[#f2f2f2] border border-[#ebebeb]">
           {CATEGORIES.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+              className={`px-3.5 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-all ${
                 selectedCategory === category
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                  ? 'bg-[#171717] text-white shadow-sm'
+                  : 'text-[#4d4d4d] hover:text-[#171717]'
               }`}
             >
               {category}
@@ -102,18 +105,19 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
         </div>
 
         {/* Quick Search Input */}
-        <div className="w-full md:w-64 relative">
+        <div className="w-full md:w-60 relative">
           <input
             type="text"
-            placeholder="Search skills..."
+            placeholder="Search stack..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900/60 border border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-all"
+            className="w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-1.5 text-sm text-[#171717] placeholder-[#8f8f8f] shadow-whisper focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8f8f8f] hover:text-[#171717]"
+              aria-label="Clear search"
             >
               &times;
             </button>
@@ -121,40 +125,40 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
         </div>
       </div>
 
-      {/* Skills Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {/* Skills Grid: Hairline Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
         {filteredSkills.map((skill) => {
           const Icon = skill.icon;
           return (
             <div
               key={skill.name}
-              className="group glass-card glass-card-hover p-5 rounded-2xl flex flex-col items-center justify-center text-center relative overflow-hidden"
+              className="group feature-card p-4 sm:p-5 flex flex-col items-center justify-center text-center relative overflow-hidden"
             >
-              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
+              <div className="absolute top-2.5 right-2.5">
+                <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#8f8f8f] border border-[#ebebeb] group-hover:text-[#171717] transition-colors">
                   {skill.level}
                 </span>
               </div>
               
-              <div className="w-12 h-12 mb-3 flex items-center justify-center rounded-xl bg-slate-800/50 border border-slate-700/50 group-hover:scale-110 group-hover:border-cyan-500/50 transition-all duration-300">
-                <Icon className="w-7 h-7 text-slate-400 group-hover:text-cyan-300 transition-colors duration-300" />
+              <div className="w-11 h-11 mb-3 flex items-center justify-center rounded-[8px] bg-[#fafafa] border border-[#ebebeb] group-hover:border-[#171717] transition-all duration-200">
+                <Icon className="w-6 h-6 text-[#171717]" />
               </div>
 
-              <h3 className="font-semibold text-sm sm:text-base text-slate-200 group-hover:text-white transition-colors">
+              <h3 className="font-semibold text-sm sm:text-base text-[#171717]">
                 {skill.name}
               </h3>
-              <p className="text-[11px] font-mono text-slate-500 mt-1">{skill.category}</p>
+              <p className="text-[11px] font-mono text-[#8f8f8f] mt-0.5">{skill.category}</p>
             </div>
           );
         })}
       </div>
 
       {filteredSkills.length === 0 && (
-        <div className="text-center py-12 text-slate-500">
+        <div className="text-center py-12 text-[#8f8f8f]">
           <p>No skills matching "{searchQuery}" in this category.</p>
           <button
             onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
-            className="mt-2 text-cyan-400 text-sm hover:underline"
+            className="mt-2 text-[#0070f3] text-sm hover:underline font-medium"
           >
             Reset Filters
           </button>

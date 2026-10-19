@@ -6,14 +6,14 @@ import { useToast } from './Toast';
 
 const PRESET_IDEAS: Omit<Project, 'imageUrl' | 'liveUrl' | 'repoUrl'>[] = [
   {
-    title: 'Autonomous GitHub PR Code Reviewer Agent',
-    description: 'A Next.js & FastAPI agentic workflow that hooks into GitHub webhooks to analyze pull requests, run static security analysis, and generate interactive inline review suggestions using LLM function calling.',
+    title: 'Autonomous GitHub PR Reviewer Agent',
+    description: 'A Next.js & FastAPI agentic workflow that connects to GitHub webhooks to analyze pull requests, run static security analysis, and generate interactive inline review suggestions using LLM function calling.',
     tags: ['Next.js', 'FastAPI', 'OpenAI Agents SDK', 'GitHub Webhooks', 'TypeScript'],
   },
   {
     title: 'Voice-First AI Customer Support Assistant',
     description: 'A real-time audio and text streaming portal enabling businesses to deploy human-like voice agents for tier-1 support, integrated with custom vector embeddings and knowledge retrieval.',
-    tags: ['React', 'WebSockets', 'Python', 'Vector DB', 'Voice AI'],
+    tags: ['React 19', 'WebSockets', 'Python', 'Vector DB', 'Voice AI'],
   },
   {
     title: 'Smart Financial Cashflow & VAT Predictor',
@@ -109,20 +109,21 @@ const ProjectIdeaGenerator: React.FC = () => {
   };
 
   return (
-    <div className="p-6 sm:p-10 glass-card rounded-3xl border border-cyan-500/20 text-center shadow-2xl shadow-cyan-950/20 max-w-4xl mx-auto">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-4">
-        <SparklesIcon className="w-3.5 h-3.5" />
+    <div className="p-6 sm:p-10 rounded-[16px] border border-[#ebebeb] bg-white text-center shadow-whisper max-w-4xl mx-auto">
+      {/* Vercel AI Badge */}
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-[#f2f2f2] border border-[#ebebeb] text-[#171717] text-xs font-mono mb-4">
+        <SparklesIcon className="w-3.5 h-3.5 text-[#171717]" />
         <span>Gemini AI Engine</span>
       </div>
 
-      <h3 className="text-2xl sm:text-4xl font-black text-slate-100 mb-2 tracking-tight">
-        Need a Project <span className="gradient-text">Concept?</span>
+      <h3 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-2 tracking-[-1.28px]">
+        Need an Architecture Concept?
       </h3>
-      <p className="text-slate-400 mb-6 text-sm sm:text-base max-w-xl mx-auto">
-        Let AI spark your next collaborative build. Select a prompt topic or input your domain ideas:
+      <p className="text-[#4d4d4d] mb-6 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Explore full-stack & AI project architectures suited for production. Select a suggested topic or enter a domain:
       </p>
 
-      {/* Suggestion Chips */}
+      {/* Suggestion Chips: rounded-[64px] */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-2xl mx-auto">
         {SUGGESTION_CHIPS.map((chip) => (
           <button
@@ -131,21 +132,21 @@ const ProjectIdeaGenerator: React.FC = () => {
               setKeywords(chip);
               handleGenerateIdea(chip);
             }}
-            className="text-xs font-medium px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-cyan-300 hover:border-cyan-500/50 hover:bg-slate-800 transition-all"
+            className="text-xs font-mono px-3.5 py-1.5 rounded-[64px] bg-[#f2f2f2] border border-[#ebebeb] text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] transition-all"
           >
             + {chip}
           </button>
         ))}
       </div>
 
-      {/* Input & Action */}
-      <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+      {/* Input & Action: rounded-[6px] text-input and button-primary-sm */}
+      <div className="flex flex-col sm:flex-row gap-2.5 max-w-xl mx-auto">
         <input
           type="text"
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
           placeholder="e.g. Healthcare, Voice AI, FinTech..."
-          className="flex-grow bg-slate-950/80 border border-slate-700/80 rounded-2xl px-5 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 text-sm transition-all"
+          className="flex-grow bg-white border border-[#ebebeb] rounded-[6px] px-4 py-2.5 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-all"
           disabled={isLoading}
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleGenerateIdea();
@@ -154,51 +155,51 @@ const ProjectIdeaGenerator: React.FC = () => {
         <button
           onClick={() => handleGenerateIdea()}
           disabled={isLoading}
-          className="flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold py-3 px-7 rounded-2xl hover:from-cyan-300 hover:to-blue-400 disabled:opacity-50 transition-all shadow-lg shadow-cyan-500/25 active:scale-95 text-sm shrink-0"
+          className="inline-flex items-center justify-center gap-2 bg-[#171717] text-white font-medium py-2.5 px-6 rounded-[6px] hover:bg-black/90 disabled:opacity-50 transition-all text-sm shrink-0 shadow-sm"
         >
           {isLoading ? (
             <>
-              <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               <span>Architecting...</span>
             </>
           ) : (
             <>
-              <SparklesIcon className="w-4 h-4" />
+              <SparklesIcon className="w-3.5 h-3.5" />
               <span>Generate Concept</span>
             </>
           )}
         </button>
       </div>
 
-      {/* Generated Result Card */}
+      {/* Generated Result Card: code-block styling */}
       {idea && (
-        <div className="mt-8 p-6 sm:p-7 bg-slate-950/80 border border-cyan-500/30 rounded-2xl text-left max-w-2xl mx-auto animate-fade-in shadow-xl relative group">
+        <div className="mt-8 p-5 sm:p-6 bg-[#fafafa] border border-[#ebebeb] rounded-[12px] text-left max-w-2xl mx-auto animate-fade-in shadow-whisper">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold">
-                Generated Concept
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8f8f8f] font-medium">
+                // GENERATED CONCEPT
               </span>
-              <h4 className="text-xl sm:text-2xl font-bold text-slate-100 mt-1">{idea.title}</h4>
+              <h4 className="text-xl sm:text-2xl font-semibold text-[#171717] tracking-[-0.4px] mt-1">{idea.title}</h4>
             </div>
             <button
               onClick={handleCopyIdea}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/40 transition-colors shrink-0 text-xs flex items-center gap-1.5"
+              className="p-1.5 px-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] transition-colors shrink-0 text-xs font-mono flex items-center gap-1.5 shadow-whisper"
               title="Copy concept"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
               <span>Copy</span>
             </button>
           </div>
 
-          <p className="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">{idea.description}</p>
+          <p className="mt-3 text-[#4d4d4d] text-sm sm:text-base leading-relaxed">{idea.description}</p>
 
-          <div className="flex flex-wrap gap-2 mt-5">
+          <div className="flex flex-wrap gap-1.5 mt-4">
             {idea.tags.map((tag) => (
               <span
                 key={tag}
-                className="bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono px-3 py-1 rounded-lg"
+                className="bg-white border border-[#ebebeb] text-[#4d4d4d] text-xs font-mono px-2.5 py-1 rounded-[6px]"
               >
                 {tag}
               </span>

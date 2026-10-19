@@ -40,9 +40,9 @@ function PortfolioApp() {
   useWebMCP(scrollToSection);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-300 relative selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-[#fafafa] text-[#4d4d4d] font-sans relative selection:bg-[#171717] selection:text-white">
       <Header onNavigate={(id) => scrollToSection(id)} />
-      <main className="container mx-auto max-w-screen-xl px-5 sm:px-8 md:px-12 relative z-10">
+      <main className="container mx-auto max-w-[1200px] px-5 sm:px-8 md:px-10 relative z-10">
         <Hero ref={homeRef} onNavigate={(id) => scrollToSection(id)} />
         <About ref={aboutRef} />
         <Skills ref={skillsRef} />

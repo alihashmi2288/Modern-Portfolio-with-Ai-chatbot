@@ -39,35 +39,29 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           <div
             key={toast.id}
             role="status"
-            className={`pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 rounded-xl border backdrop-blur-xl shadow-xl transition-all duration-300 animate-fade-in ${
-              toast.type === 'success'
-                ? 'bg-emerald-950/80 border-emerald-500/50 text-emerald-200 shadow-emerald-950/50'
-                : toast.type === 'error'
-                ? 'bg-rose-950/80 border-rose-500/50 text-rose-200 shadow-rose-950/50'
-                : 'bg-cyan-950/80 border-cyan-500/50 text-cyan-200 shadow-cyan-950/50'
-            }`}
+            className="pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 rounded-[8px] border border-[#ebebeb] bg-white text-[#171717] shadow-floating transition-all duration-200 animate-fade-in"
           >
             <div className="flex items-center gap-2.5 text-sm font-medium">
               {toast.type === 'success' && (
-                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 text-[#0070f3] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               )}
               {toast.type === 'error' && (
-                <svg className="w-5 h-5 text-rose-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 text-[#ee0000] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               )}
               {toast.type === 'info' && (
-                <svg className="w-5 h-5 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 text-[#0070f3] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               )}
-              <span>{toast.text}</span>
+              <span className="text-xs sm:text-sm">{toast.text}</span>
             </div>
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-slate-400 hover:text-white text-lg leading-none p-1 transition-colors"
+              className="text-[#8f8f8f] hover:text-[#171717] text-base leading-none p-1 transition-colors"
               aria-label="Close notification"
             >
               &times;

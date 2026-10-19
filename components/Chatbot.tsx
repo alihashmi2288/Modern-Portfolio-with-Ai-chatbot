@@ -19,7 +19,7 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
-      text: "👋 Hi there! I'm Syed's AI assistant. Ask me anything about his full-stack experience, AI projects, or how to get in touch!",
+      text: "Hi! I'm Syed's portfolio assistant. Ask me anything about his full-stack engineering, AI projects, or how to get in touch.",
     },
   ]);
   const [userInput, setUserInput] = useState('');
@@ -40,7 +40,7 @@ const Chatbot: React.FC = () => {
 
     Skills:
     - Languages: TypeScript, Python, Dart, JavaScript
-    - Frontend: Next.js, React, Flutter, Tailwind CSS
+    - Frontend: Next.js, React 19, Flutter, Tailwind CSS
     - Backend: Node.js, FastAPI, REST APIs
     - AI & Automation: OpenAI SDK, OpenAI Agents SDK, LLM Integration, Agentic Workflows
     - Tools: Git, GitHub, Vercel
@@ -123,7 +123,7 @@ const Chatbot: React.FC = () => {
         const reply = getFallbackReply(textToSend);
         setMessages((prev) => [...prev, { role: 'model', text: reply }]);
         setIsLoading(false);
-      }, 500);
+      }, 400);
       return;
     } catch (error) {
       console.warn('Live API response failed, using smart fallback:', error);
@@ -150,54 +150,53 @@ const Chatbot: React.FC = () => {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button: Black circular button with Level-2 shadow */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold shadow-2xl shadow-cyan-500/40 hover:scale-110 active:scale-95 transition-all duration-300 group"
+        className="fixed bottom-6 right-6 z-50 w-13 h-13 p-3.5 rounded-full bg-[#171717] text-white shadow-floating hover:scale-105 active:scale-95 transition-all duration-200 group"
         aria-label="Toggle AI Portfolio Assistant"
       >
-        <div className="relative">
-          <MessageSquareIcon className="w-6 h-6 text-slate-950" />
-          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950 animate-pulse"></span>
+        <div className="relative flex items-center justify-center">
+          <MessageSquareIcon className="w-5 h-5 text-white" />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#50e3c2] ring-2 ring-white"></span>
         </div>
       </button>
 
-      {/* Floating Chat Modal */}
+      {/* Floating Chat Modal: Vercel Geist Surface */}
       <div
-        className={`fixed bottom-24 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[550px] max-h-[80vh] z-50 transition-all duration-300 ease-out origin-bottom-right ${
+        className={`fixed bottom-22 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[540px] max-h-[80vh] z-50 transition-all duration-200 ease-out origin-bottom-right ${
           isOpen
             ? 'opacity-100 scale-100 pointer-events-auto'
-            : 'opacity-0 scale-90 pointer-events-none'
+            : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        <div className="h-full flex flex-col bg-slate-900/90 backdrop-blur-2xl border border-slate-700/70 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden">
+        <div className="h-full flex flex-col bg-white border border-[#ebebeb] rounded-[16px] shadow-floating-lg overflow-hidden">
           {/* Header */}
-          <header className="p-4 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
-                <SparklesIcon className="w-4 h-4" />
+          <header className="p-3.5 border-b border-[#ebebeb] bg-white flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-[6px] bg-[#f2f2f2] border border-[#ebebeb] flex items-center justify-center text-[#171717]">
+                <SparklesIcon className="w-3.5 h-3.5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-100 text-sm flex items-center gap-1.5">
-                  <span>Ali's AI Agent</span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 border border-cyan-500/30 text-cyan-300">
+                <h3 className="font-semibold text-[#171717] text-sm flex items-center gap-1.5">
+                  <span>AI Assistant</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-[4px] bg-[#f2f2f2] border border-[#ebebeb] text-[#171717]">
                     Online
                   </span>
                 </h3>
-                <p className="text-xs text-slate-400">Trained on Syed's background</p>
               </div>
             </div>
             <div className="flex items-center gap-1">
               <button
                 onClick={clearChat}
-                className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 text-xs"
+                className="text-[#8f8f8f] hover:text-[#171717] p-1.5 rounded-[6px] hover:bg-[#f2f2f2] text-xs font-mono"
                 title="Clear chat history"
               >
                 Clear
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 text-lg leading-none"
+                className="text-[#8f8f8f] hover:text-[#171717] p-1.5 rounded-[6px] hover:bg-[#f2f2f2] text-base leading-none"
                 aria-label="Close chat"
               >
                 &times;
@@ -206,12 +205,12 @@ const Chatbot: React.FC = () => {
           </header>
 
           {/* Quick Prompts Carousel */}
-          <div className="px-3 py-2 bg-slate-950/40 border-b border-slate-800/60 flex gap-1.5 overflow-x-auto no-scrollbar">
+          <div className="px-3 py-2 bg-[#fafafa] border-b border-[#ebebeb] flex gap-1.5 overflow-x-auto no-scrollbar">
             {QUICK_PROMPTS.map((prompt, i) => (
               <button
                 key={i}
                 onClick={() => sendMessage(prompt)}
-                className="shrink-0 text-[11px] font-medium px-2.5 py-1 rounded-full bg-slate-800/80 hover:bg-cyan-950/80 border border-slate-700/60 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-colors whitespace-nowrap"
+                className="shrink-0 text-[11px] font-mono font-medium px-2.5 py-1 rounded-[64px] bg-white hover:bg-[#f2f2f2] border border-[#ebebeb] text-[#4d4d4d] hover:text-[#171717] transition-colors whitespace-nowrap shadow-whisper"
               >
                 {prompt}
               </button>
@@ -219,17 +218,17 @@ const Chatbot: React.FC = () => {
           </div>
 
           {/* Messages Body */}
-          <div ref={chatBodyRef} className="flex-1 p-4 overflow-y-auto space-y-3">
+          <div ref={chatBodyRef} className="flex-1 p-4 overflow-y-auto space-y-3 bg-white">
             {messages.map((msg, index) => (
               <div
                 key={index}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] text-xs sm:text-sm py-2.5 px-3.5 rounded-2xl leading-relaxed ${
+                  className={`max-w-[85%] text-xs sm:text-sm py-2.5 px-3.5 leading-relaxed ${
                     msg.role === 'user'
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-medium rounded-br-none shadow-md shadow-cyan-500/20'
-                      : 'bg-slate-800/80 text-slate-200 border border-slate-700/60 rounded-bl-none shadow-sm'
+                      ? 'bg-[#171717] text-white rounded-[12px] rounded-br-[2px] shadow-whisper'
+                      : 'bg-[#f2f2f2] text-[#171717] border border-[#ebebeb] rounded-[12px] rounded-bl-[2px]'
                   }`}
                 >
                   {msg.text}
@@ -238,10 +237,10 @@ const Chatbot: React.FC = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="py-2 px-3 rounded-2xl bg-slate-800 text-slate-400 text-xs rounded-bl-none flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce"></div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.2s]"></div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.4s]"></div>
+                <div className="py-2 px-3 rounded-[12px] rounded-bl-[2px] bg-[#f2f2f2] border border-[#ebebeb] text-[#8f8f8f] text-xs flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce [animation-delay:0.2s]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce [animation-delay:0.4s]"></div>
                 </div>
               </div>
             )}
@@ -250,23 +249,23 @@ const Chatbot: React.FC = () => {
           {/* Input Form */}
           <form
             onSubmit={handleSendMessage}
-            className="p-3 border-t border-slate-800 bg-slate-950/60 flex items-center gap-2"
+            className="p-2.5 border-t border-[#ebebeb] bg-[#fafafa] flex items-center gap-2"
           >
             <input
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Ask about projects, skills, roles..."
-              className="flex-grow bg-slate-900 border border-slate-800 rounded-full px-4 py-2 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all"
+              placeholder="Ask about skills, projects, contact..."
+              className="flex-grow bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-1.5 text-xs sm:text-sm text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] shadow-whisper transition-all"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading || !userInput.trim()}
-              className="p-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-40 transition-colors shadow-md shadow-cyan-500/25 shrink-0"
+              className="p-2 rounded-[6px] bg-[#171717] hover:bg-black/90 text-white disabled:opacity-40 transition-colors shadow-sm shrink-0"
               aria-label="Send message"
             >
-              <SendIcon className="w-4 h-4" />
+              <SendIcon className="w-3.5 h-3.5" />
             </button>
           </form>
         </div>

@@ -27,7 +27,7 @@ const projectsData: Project[] = [
   },
   {
     title: 'Creative Realm Designs',
-    description: 'Designed and developed a premium, high-end digital agency landing page at the intersection of creative design and Web3 innovation. Features sleek obsidian dark mode, smooth scroll animations, glassmorphism UI components, dynamic statistics counters, and highly responsive page layouts.',
+    description: 'Designed and developed a premium digital agency landing page at the intersection of creative design and modern web performance. Features obsidian dark mode, smooth scroll animations, glassmorphism UI components, dynamic statistics counters, and highly responsive page layouts.',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
     imageUrl: '/images/creative_realm_mockup.png',
     category: 'Web3 & Agency',
@@ -67,25 +67,28 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <Section ref={ref} id="projects">
+      {/* Header with Technical Eyebrow and Geist Sans Heading */}
       <div className="text-center mb-12 reveal-on-scroll">
-        <span className="text-cyan-400 font-mono text-sm tracking-wider uppercase">Portfolio Showcase</span>
-        <h2 className="text-3xl sm:text-5xl font-black text-slate-100 tracking-tight mt-2">
-          Featured <span className="gradient-text">Projects</span>
+        <span className="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] font-medium block">
+          // PRODUCTION WORK & CASE STUDIES
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-[#171717] tracking-[-1.28px] mt-2">
+          Featured Projects
         </h2>
-        <p className="mt-4 max-w-xl mx-auto text-slate-400 text-base">
+        <p className="mt-2.5 max-w-xl mx-auto text-[#4d4d4d] text-base">
           Production applications spanning full-stack development, Agentic AI, and responsive modern web experiences.
         </p>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+        {/* Category Filters: rounded-[64px] */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+              className={`px-4 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-all ${
                 selectedCategory === cat
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/25'
-                  : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800'
+                  ? 'bg-[#171717] text-white shadow-sm'
+                  : 'bg-white text-[#4d4d4d] hover:text-[#171717] border border-[#ebebeb] shadow-whisper'
               }`}
             >
               {cat}
@@ -95,33 +98,32 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
       </div>
 
       {/* Projects List */}
-      <div className="space-y-16 sm:space-y-24">
+      <div className="space-y-10 sm:space-y-12">
         {filteredProjects.map((project, index) => {
           const isOdd = index % 2 === 1;
           return (
             <div
               key={project.title}
-              className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800/80 grid md:grid-cols-12 gap-8 items-center reveal-on-scroll"
+              className="bg-white p-6 sm:p-8 rounded-[16px] border border-[#ebebeb] shadow-whisper hover:shadow-floating transition-all grid md:grid-cols-12 gap-8 items-center reveal-on-scroll"
             >
-              {/* Image Preview Thumbnail */}
+              {/* Image Preview Thumbnail in Hairline Device Frame */}
               <div
-                className={`md:col-span-6 relative group cursor-pointer ${
+                className={`md:col-span-6 cursor-pointer group ${
                   isOdd ? 'md:order-2' : 'md:order-1'
                 }`}
                 onClick={() => setPreviewImage({ src: project.imageUrl, title: project.title })}
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-30 group-hover:opacity-75 transition duration-500"></div>
-                <div className="relative overflow-hidden rounded-xl border border-slate-700/60 bg-slate-950">
+                <div className="relative overflow-hidden rounded-[12px] border border-[#ebebeb] bg-[#fafafa]">
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-300"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop';
                     }}
                   />
-                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                    <span className="px-4 py-2 rounded-full bg-slate-900/90 border border-cyan-500/40 text-xs font-semibold text-cyan-300">
+                  <div className="absolute inset-0 bg-[#171717]/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
+                    <span className="px-3.5 py-1.5 rounded-[100px] bg-white border border-[#ebebeb] text-xs font-mono font-medium text-[#171717] shadow-floating">
                       Click to Preview
                     </span>
                   </div>
@@ -131,39 +133,39 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
               {/* Project Content */}
               <div className={`md:col-span-6 ${isOdd ? 'md:order-1' : 'md:order-2'}`}>
                 {project.category && (
-                  <span className="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-medium text-[#8f8f8f] uppercase tracking-wider block mb-1">
                     {project.category}
                   </span>
                 )}
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 mt-1 mb-3">
+                <h3 className="text-2xl sm:text-3xl font-semibold text-[#171717] tracking-[-0.4px] mb-3">
                   {project.title}
                 </h3>
-                <p className="text-slate-400 mb-6 text-sm sm:text-base leading-relaxed">
+                <p className="text-[#4d4d4d] mb-5 text-sm sm:text-base leading-relaxed">
                   {project.description}
                 </p>
 
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                {/* Tech Tags: rounded-[6px] with Geist Mono */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-slate-900/90 text-cyan-300 text-xs font-mono px-3 py-1 rounded-lg border border-slate-800"
+                      className="bg-[#f2f2f2] text-[#4d4d4d] text-xs font-mono px-2.5 py-1 rounded-[6px] border border-[#ebebeb]"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Action Links */}
-                <div className="flex items-center gap-4">
+                {/* Action Links: 6px square app controls */}
+                <div className="flex items-center gap-3">
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[6px] bg-[#171717] text-white font-medium text-sm hover:bg-black/90 transition-colors shadow-sm"
                     >
-                      <ExternalLinkIcon className="w-4 h-4" />
+                      <ExternalLinkIcon className="w-3.5 h-3.5" />
                       <span>Live Demo</span>
                     </a>
                   )}
@@ -172,10 +174,10 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white font-medium text-sm transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-sm transition-colors shadow-whisper"
                     >
-                      <GithubIcon className="w-4 h-4" />
-                      <span>Code Repository</span>
+                      <GithubIcon className="w-3.5 h-3.5" />
+                      <span>Repository</span>
                     </a>
                   )}
                 </div>
@@ -190,28 +192,28 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fade-in"
+          className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 animate-fade-in"
           onClick={() => setPreviewImage(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl p-2"
+            className="relative max-w-4xl w-full bg-white border border-[#ebebeb] rounded-[16px] overflow-hidden shadow-floating-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-3 border-b border-slate-800">
-              <h4 className="text-slate-200 font-bold text-base">{previewImage.title}</h4>
+            <div className="flex items-center justify-between p-4 border-b border-[#ebebeb]">
+              <h4 className="text-[#171717] font-semibold text-base">{previewImage.title}</h4>
               <button
                 onClick={() => setPreviewImage(null)}
-                className="text-slate-400 hover:text-white text-xl p-1 leading-none rounded-lg hover:bg-slate-800"
+                className="text-[#8f8f8f] hover:text-[#171717] text-xl p-1 leading-none rounded-[6px] hover:bg-[#f2f2f2]"
                 aria-label="Close dialog"
               >
                 &times;
               </button>
             </div>
-            <div className="p-2">
+            <div className="p-4 bg-[#fafafa]">
               <img
                 src={previewImage.src}
                 alt={previewImage.title}
-                className="w-full h-auto max-h-[75vh] object-contain rounded-lg"
+                className="w-full h-auto max-h-[75vh] object-contain rounded-[8px] border border-[#ebebeb]"
               />
             </div>
           </div>
@@ -219,7 +221,7 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
       )}
 
       {/* AI Idea Generator Section */}
-      <div className="mt-24 sm:mt-32">
+      <div className="mt-20 sm:mt-28">
         <ProjectIdeaGenerator />
       </div>
     </Section>

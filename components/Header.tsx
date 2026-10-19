@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { SectionId } from '../types';
-import { DownloadIcon } from './IconComponents';
+import { DownloadIcon, VercelIcon } from './IconComponents';
 
 interface HeaderProps {
   onNavigate: (section: SectionId) => void;
@@ -21,12 +21,12 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Modern Scrollspy implementation with IntersectionObserver as per modern-web-guidance
+    // Scrollspy with IntersectionObserver
     const sections = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
 
     const observer = new IntersectionObserver(
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         });
       },
       {
-        rootMargin: '-30% 0px -40% 0px',
+        rootMargin: '-20% 0px -40% 0px',
         threshold: 0,
       }
     );
@@ -58,30 +58,33 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-screen-lg transition-all duration-300 ${
-        scrolled || isMenuOpen
-          ? 'bg-slate-900/80 backdrop-blur-xl border border-slate-700/60 shadow-2xl shadow-cyan-950/20'
-          : 'bg-slate-950/40 backdrop-blur-md border border-slate-800/40'
-      } rounded-full`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b ${
+        scrolled
+          ? 'bg-[#fafafa]/90 backdrop-blur-md border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+          : 'bg-[#fafafa]/75 backdrop-blur-sm border-[#ebebeb]'
+      }`}
     >
-      <nav className="container mx-auto px-5 sm:px-6" aria-label="Main Navigation">
+      <nav className="container mx-auto max-w-[1200px] px-5 sm:px-8" aria-label="Main Navigation">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Logo */}
+          {/* Logo / Wordmark */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-2 group text-left focus:outline-none"
+            className="flex items-center gap-2.5 text-left focus:outline-none group"
             aria-label="Syed Ali Hashmi Homepage"
           >
-            <span className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-sm shadow-md shadow-cyan-500/30 group-hover:scale-105 transition-transform">
-              SH
+            <div className="w-6 h-6 flex items-center justify-center text-[#171717] group-hover:scale-105 transition-transform">
+              <VercelIcon className="w-5 h-5 fill-current" />
+            </div>
+            <span className="font-semibold text-sm sm:text-base text-[#171717] tracking-[-0.4px] group-hover:text-black transition-colors">
+              Syed Ali Hashmi
             </span>
-            <span className="font-bold text-lg text-slate-100 tracking-tight group-hover:text-cyan-300 transition-colors">
-              Ali<span className="text-cyan-400">.dev</span>
+            <span className="hidden sm:inline-block font-mono text-[11px] text-[#8f8f8f] bg-[#f2f2f2] px-2 py-0.5 rounded-[6px] border border-[#ebebeb]">
+              v2.0
             </span>
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 bg-slate-950/40 p-1.5 rounded-full border border-slate-800/50">
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -89,49 +92,52 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
                   aria-current={isActive ? 'true' : undefined}
-                  className={`relative px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`px-3 py-1.5 text-sm font-normal rounded-full transition-colors ${
                     isActive
-                      ? 'text-cyan-300 bg-cyan-950/60 shadow-sm border border-cyan-500/30 font-semibold'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                      ? 'text-[#171717] font-medium bg-[#f2f2f2]'
+                      : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb]/50'
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full blur-[1px]"></span>
-                  )}
                 </button>
               );
             })}
           </div>
 
-          {/* Right Action: Quick Resume / Contact */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right Action Chrome: button-ghost-sm & button-primary-sm */}
+          <div className="hidden md:flex items-center gap-2.5">
             <a
               href="/Syed%20Ali%20Hashmi%20Resume.pdf"
               download="Syed Ali Hashmi Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] shadow-whisper hover:bg-[#fafafa] hover:border-[#d4d4d4] transition-colors"
             >
               <DownloadIcon className="w-3.5 h-3.5" />
               <span>Resume</span>
             </a>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="inline-flex items-center text-sm font-medium px-3.5 py-1.5 rounded-[6px] bg-[#171717] text-white hover:bg-black/90 transition-colors shadow-sm"
+            >
+              Contact
+            </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-full text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+              className="p-2 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] transition-colors focus:outline-none"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
@@ -142,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
       {/* Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 p-4 bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-700/60 shadow-2xl flex flex-col gap-2 animate-fade-in">
+        <div className="md:hidden border-b border-[#ebebeb] bg-[#ffffff] p-5 shadow-floating flex flex-col gap-1.5 animate-fade-in">
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -150,27 +156,33 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 aria-current={isActive ? 'true' : undefined}
-                className={`w-full py-3 px-4 text-left font-medium rounded-xl transition-all ${
+                className={`w-full py-2.5 px-3.5 text-left text-sm rounded-[6px] transition-colors ${
                   isActive
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
-                    : 'text-slate-300 hover:bg-slate-800/50 hover:text-white'
+                    ? 'bg-[#f2f2f2] text-[#171717] font-medium'
+                    : 'text-[#4d4d4d] hover:bg-[#fafafa] hover:text-[#171717]'
                 }`}
               >
                 {item.label}
               </button>
             );
           })}
-          <div className="pt-2 border-t border-slate-800 mt-1 flex justify-center">
+          <div className="pt-3 border-t border-[#ebebeb] mt-2 flex flex-col gap-2">
             <a
               href="/Syed%20Ali%20Hashmi%20Resume.pdf"
               download="Syed Ali Hashmi Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm"
+              className="w-full text-center flex items-center justify-center gap-2 py-2 px-4 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] font-medium text-sm hover:bg-[#fafafa]"
             >
               <DownloadIcon className="w-4 h-4" />
               Download Resume
             </a>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="w-full text-center py-2 px-4 rounded-[6px] bg-[#171717] text-white font-medium text-sm hover:bg-black/90"
+            >
+              Contact Me
+            </button>
           </div>
         </div>
       )}
