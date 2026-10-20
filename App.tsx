@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -15,6 +16,7 @@ function PortfolioApp() {
   const homeRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
+  const certificationsRef = useRef<HTMLElement>(null);
   const skillsRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
@@ -22,6 +24,7 @@ function PortfolioApp() {
     home: homeRef,
     about: aboutRef,
     projects: projectsRef,
+    certifications: certificationsRef,
     skills: skillsRef,
     contact: contactRef,
   };
@@ -47,6 +50,7 @@ function PortfolioApp() {
         <About ref={aboutRef} />
         <Skills ref={skillsRef} />
         <Projects ref={projectsRef} />
+        <Certifications ref={certificationsRef} />
         <Contact ref={contactRef} />
       </main>
       <Footer onNavigate={(id) => scrollToSection(id)} />

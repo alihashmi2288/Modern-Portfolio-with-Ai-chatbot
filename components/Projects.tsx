@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { Project } from '../types';
 import Section from './Section';
 import { GithubIcon, ExternalLinkIcon } from './IconComponents';
@@ -6,20 +7,20 @@ import ProjectIdeaGenerator from './ProjectIdeaGenerator';
 
 const projectsData: Project[] = [
   {
-    title: 'AI-Powered Resume Builder',
-    description: 'Built a web application that uses LLM APIs to parse user input, generate content suggestions, and auto-format resumes into ATS-friendly layouts. Developed with Next.js and TypeScript, delivering a responsive interface for job seekers to create optimized resumes in minutes.',
-    tags: ['Next.js', 'TypeScript', 'LLM APIs', 'ATS Layouts', 'Tailwind CSS', 'Vercel'],
-    imageUrl: '/images/resume_builder_mockup.png',
+    title: 'AI Resume Architect — ATS Resume Builder',
+    description: 'Engineered an AI-powered resume workspace with real-time ATS scoring, keyword compatibility auditing, and intelligent copilot drafting. Features 9 ATS-friendly templates, custom styling controls, and instant PDF generation built with Next.js and TypeScript.',
+    tags: ['Next.js', 'TypeScript', 'LLM APIs', 'ATS Auditor', 'Tailwind CSS', 'Vercel'],
+    imageUrl: '/images/resume_builder_real.png',
     category: 'AI & LLM',
     featured: true,
     liveUrl: 'https://resume-builder-ali.vercel.app',
     repoUrl: 'https://github.com/alihashmi2288',
   },
   {
-    title: 'PDF Tools with AI Chat',
-    description: 'Built a web application enabling users to upload PDF documents and interact with them through AI-powered chat. Integrated LLM APIs with PDF parsing to enable intelligent content extraction, summarization, and query responses.',
-    tags: ['Next.js', 'FastAPI', 'Python', 'PDF Parsing', 'LLM APIs'],
-    imageUrl: '/images/pdf_chat_mockup.png',
+    title: 'PDFKit — All-in-One PDF Toolkit & AI Chat',
+    description: 'Engineered a comprehensive client-side PDF suite featuring 44+ tools and AI superpowers. Includes a Multi-Document AI Workspace, contract scanner & redliner, invoice table extractor, document translator, e-signatures, and AES-256 encryption with 100% private, on-device processing where files never leave the browser.',
+    tags: ['Next.js', 'FastAPI', 'Python', 'LLM APIs', 'Client-Side Privacy', '44+ PDF Tools'],
+    imageUrl: '/images/pdf_toolkit_real.png',
     category: 'AI & LLM',
     featured: true,
     liveUrl: 'https://pdf-tools-with-ai-chat.vercel.app',
@@ -27,30 +28,30 @@ const projectsData: Project[] = [
   },
   {
     title: 'Creative Realm Designs',
-    description: 'Designed and developed a premium digital agency landing page at the intersection of creative design and modern web performance. Features obsidian dark mode, smooth scroll animations, glassmorphism UI components, dynamic statistics counters, and highly responsive page layouts.',
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
-    imageUrl: '/images/creative_realm_mockup.png',
+    description: 'Designed and engineered a full-scale digital agency web platform specializing in bespoke website design, ultra-fast Next.js development, and Google SEO growth. Features obsidian dark mode, interactive service estimator, sub-second page performance, and high-conversion UI architecture.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'SEO Growth'],
+    imageUrl: '/images/creative_realm_real.png',
     category: 'Web3 & Agency',
     featured: true,
-    liveUrl: 'https://creative-realm-designs.vercel.app/',
+    liveUrl: 'https://creative-realm-designs-getj.vercel.app/',
     repoUrl: 'https://github.com/alihashmi2288/creative-Realm-Designs',
   },
   {
     title: 'Reverse Sales Tax Calculator',
-    description: 'Developed an advanced financial utility web application to back-calculate pre-tax amounts from total receipts. Features multiple computation modes including Single Item, Multiple Items, Implied Rate Finder, and CSV Batch Processing. Includes preloaded tax rate databases for US states and international GST/VAT.',
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'CSV Parsing', 'Vercel'],
-    imageUrl: '/images/reverse_tax_calculator_mockup.png',
+    description: 'Engineered an SEO-optimized financial calculation platform to back-calculate pre-tax amounts from total receipts. Built with programmatic SEO architecture and structured schema markup to rank for high-intent tax calculation queries. Features Basic, Multiple Items, Implied Rate Finder, and CSV Batch Processing alongside US state and international VAT/GST rate databases.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Programmatic SEO', 'Tailwind CSS', 'CSV Parsing'],
+    imageUrl: '/images/reverse_tax_calculator_real.png',
     category: 'Financial Tech',
     liveUrl: 'https://reversesalestaxcalculator.vercel.app',
     repoUrl: 'https://github.com/alihashmi2288/reversesalestaxcalculator',
   },
   {
-    title: 'The Codrex — Digital Agency Website',
-    description: 'Designed and developed a production website for a digital agency using a high-performance architecture and custom UI/UX layouts.',
-    tags: ['Next.js', 'Tailwind CSS', 'UI/UX Design', 'High Performance'],
-    imageUrl: '/images/codrex_agency_mockup.png',
+    title: 'Zoryn Stacks — Digital Agency Studio',
+    description: 'Designed and developed a production website for Zoryn Stacks, a full-cycle digital agency studio delivering web applications, mobile products, brand systems, and AI automation. Features high-performance architecture, dynamic canvas theme switching, interactive service showcases, and seamless client onboarding.',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Digital Agency'],
+    imageUrl: '/images/zoryn_stacks_real.png',
     category: 'Web3 & Agency',
-    liveUrl: 'https://thecodrex.com',
+    liveUrl: 'https://zorynstacks.com/',
     repoUrl: 'https://github.com/alihashmi2288',
   },
 ];
@@ -188,7 +189,7 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
       </div>
 
       {/* Image Preview Lightbox Modal */}
-      {previewImage && (
+      {previewImage && typeof document !== 'undefined' && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -217,7 +218,8 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
               />
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* AI Idea Generator Section */}

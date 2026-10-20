@@ -28,6 +28,13 @@ export function useWebMCP(onNavigate?: (section: string) => void) {
               title: 'Software Engineer & Full-Stack AI Developer',
               education: 'BS Software Engineering, UBIT, University of Karachi (6th Semester)',
               specialization: 'Artificial Intelligence, Web 3.0 & Metaverse (Governor Sindh IT Initiative)',
+              certifications: [
+                'Google AI Professional Certificate',
+                'IBM AI Developer Professional Certificate',
+                'AI, Web 3.0 & Metaverse Specialization (GIAIC - In Progress)',
+                'Mobile Application Development (Flutter - Jawan Pakistan)',
+                'NAVTTC Amazon E-Commerce & Operations (Honors)'
+              ],
               location: 'Karachi, Pakistan',
               email: 'hashmi.ali2288@gmail.com',
               phone: '+92 319 7345923',
@@ -64,13 +71,13 @@ export function useWebMCP(onNavigate?: (section: string) => void) {
       docWithContext.modelContext.registerTool(
         {
           name: 'navigate_to_section',
-          description: 'Scroll smoothly to a section on the portfolio page (home, about, skills, projects, contact).',
+          description: 'Scroll smoothly to a section on the portfolio page (home, about, skills, projects, certifications, contact).',
           inputSchema: {
             type: 'object',
             properties: {
               sectionId: {
                 type: 'string',
-                description: 'The ID of the section to scroll to: "home", "about", "skills", "projects", or "contact".',
+                description: 'The ID of the section to scroll to: "home", "about", "skills", "projects", "certifications", or "contact".',
               },
             },
             required: ['sectionId'],

@@ -11,6 +11,7 @@ const NAV_ITEMS: { id: SectionId; label: string }[] = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Tech Arsenal' },
   { id: 'projects', label: 'Projects' },
+  { id: 'certifications', label: 'Certifications' },
   { id: 'contact', label: 'Contact' },
 ];
 

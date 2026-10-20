@@ -3,10 +3,11 @@ import { GithubIcon, LinkedinIcon, DownloadIcon, SparklesIcon } from './IconComp
 import type { SectionId } from '../types';
 
 const roles = [
-  'Software Engineer.',
-  'Full-Stack Developer.',
-  'AI & Automation Specialist.',
-  'Agentic Systems Builder.',
+  'Agentic Systems.',
+  'AI Automations.',
+  'Full-Stack Web Apps.',
+  'Autonomous AI Workflows.',
+  'Production Web Platforms.',
 ];
 
 const Typewriter: React.FC = () => {

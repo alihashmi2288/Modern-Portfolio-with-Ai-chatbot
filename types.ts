@@ -16,4 +16,19 @@ export interface Skill {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-export type SectionId = 'home' | 'about' | 'projects' | 'skills' | 'contact';
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  issuerCode: 'google' | 'ibm' | 'governor' | 'jawan' | 'navttc';
+  issueDate: string;
+  status: 'Completed' | 'In Progress';
+  description: string;
+  skills: string[];
+  imagePreviewUrl?: string;
+  pdfUrl?: string;
+  credentialUrl?: string;
+  category: 'AI & Machine Learning' | 'Software Engineering' | 'In Progress';
+}
+
+export type SectionId = 'home' | 'about' | 'skills' | 'projects' | 'certifications' | 'contact';
