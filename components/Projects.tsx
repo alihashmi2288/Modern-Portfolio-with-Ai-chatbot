@@ -33,7 +33,7 @@ const projectsData: Project[] = [
     imageUrl: '/images/creative_realm_real.png',
     category: 'Web3 & Agency',
     featured: true,
-    liveUrl: 'https://creative-realm-designs-getj.vercel.app/',
+    liveUrl: 'https://creativerealmdesigns.com/',
     repoUrl: 'https://github.com/alihashmi2288/creative-Realm-Designs',
   },
   {

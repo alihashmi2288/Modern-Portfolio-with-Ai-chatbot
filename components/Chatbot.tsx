@@ -43,7 +43,7 @@ Key Projects:
 2. PDFKit — All-in-One PDF Toolkit & AI Chat (https://pdf-tools-with-ai-chat.vercel.app):
    - Tech: Next.js, Python, FastAPI, WebAssembly
    - Highlights: 44+ tools, 100% private on-device processing, multi-document AI workspace, document analysis.
-3. Creative Realm Designs (https://creative-realm-designs-getj.vercel.app):
+3. Creative Realm Designs (https://creativerealmdesigns.com):
    - Tech: Next.js, React, Tailwind CSS
    - Highlights: High-end bespoke digital agency web platform, obsidian dark mode, sub-second performance, programmatic SEO growth.
 4. Reverse Sales Tax Calculator (https://reversesalestaxcalculator.vercel.app):
@@ -84,7 +84,7 @@ function getComprehensiveReply(rawQuery: string): string {
   }
 
   if (q.includes('creative realm') || q.includes('agency platform')) {
-    return "**Creative Realm Designs** is a high-end bespoke digital agency web platform featuring an obsidian dark mode, sub-second performance, and programmatic SEO architecture. Live demo: [Creative Realm Designs](https://creative-realm-designs-getj.vercel.app).";
+    return "**Creative Realm Designs** is a high-end bespoke digital agency web platform featuring sub-second performance, high-conversion UI architecture, and programmatic Google SEO growth. Live demo: [Creative Realm Designs](https://creativerealmdesigns.com/).";
   }
 
   if (q.includes('tax') || q.includes('reverse sales tax') || q.includes('calculator')) {
@@ -99,7 +99,7 @@ function getComprehensiveReply(rawQuery: string): string {
     return "Syed has built several notable production applications:\n\n" +
       "1. **AI Resume Architect**: Next.js & LLM-powered ATS resume builder ([Demo](https://resume-builder-ali.vercel.app))\n" +
       "2. **PDFKit**: All-in-One 44+ PDF toolkit with Multi-Doc AI Workspace ([Demo](https://pdf-tools-with-ai-chat.vercel.app))\n" +
-      "3. **Creative Realm Designs**: Bespoke agency platform with obsidian aesthetics ([Demo](https://creative-realm-designs-getj.vercel.app))\n" +
+      "3. **Creative Realm Designs**: Bespoke digital agency platform ([Live Site](https://creativerealmdesigns.com/))\n" +
       "4. **Reverse Sales Tax Calculator**: Programmatic SEO financial engine ([Demo](https://reversesalestaxcalculator.vercel.app))\n" +
       "5. **Zoryn Stacks**: Engineering studio platform ([Demo](https://zorynstacks.com))";
   }

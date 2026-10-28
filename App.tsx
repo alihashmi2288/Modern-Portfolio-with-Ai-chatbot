@@ -3,6 +3,7 @@ import type { SectionId } from './types';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Services from './components/Services';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Skills from './components/Skills';
@@ -15,6 +16,7 @@ import { useWebMCP } from './hooks/useWebMCP';
 function PortfolioApp() {
   const homeRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
+  const servicesRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const certificationsRef = useRef<HTMLElement>(null);
   const skillsRef = useRef<HTMLElement>(null);
@@ -48,6 +50,7 @@ function PortfolioApp() {
       <main className="container mx-auto max-w-[1200px] px-5 sm:px-8 md:px-10 relative z-10">
         <Hero ref={homeRef} onNavigate={(id) => scrollToSection(id)} />
         <About ref={aboutRef} />
+        <Services ref={servicesRef} />
         <Skills ref={skillsRef} />
         <Projects ref={projectsRef} />
         <Certifications ref={certificationsRef} />
