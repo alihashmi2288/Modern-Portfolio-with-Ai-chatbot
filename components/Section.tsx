@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useEffect, useState, forwardRef } from 'react';
 
 interface SectionProps {

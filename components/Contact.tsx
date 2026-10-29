@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useEffect } from 'react';
 import Section from './Section';
 import { GithubIcon, LinkedinIcon, MailIcon } from './IconComponents';

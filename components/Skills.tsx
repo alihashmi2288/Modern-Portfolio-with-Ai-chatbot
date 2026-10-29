@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useMemo } from 'react';
 import type { Skill } from '../types';
 import Section from './Section';

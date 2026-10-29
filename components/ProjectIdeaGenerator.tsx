@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { GoogleGenAI, Type } from '@google/genai';
 import { SparklesIcon } from './IconComponents';
@@ -77,6 +79,25 @@ const ProjectIdeaGenerator: React.FC = () => {
           showToast('New project concept generated with Gemini!', 'success');
           return;
         }
+      }
+
+      // Try server-side route handler
+      try {
+        const res = await fetch('/api/generate-idea', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query }),
+        });
+        if (res.ok) {
+          const generatedIdea = await res.json();
+          if (generatedIdea.title) {
+            setIdea(generatedIdea);
+            showToast('New project concept generated with Gemini!', 'success');
+            return;
+          }
+        }
+      } catch (routeErr) {
+        // Fall through to preset ideas
       }
 
       // High-quality deterministic fallback if no API key is set

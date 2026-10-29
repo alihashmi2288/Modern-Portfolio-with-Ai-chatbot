@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useEffect } from 'react';
 import { GithubIcon, LinkedinIcon, DownloadIcon, SparklesIcon } from './IconComponents';
 import type { SectionId } from '../types';

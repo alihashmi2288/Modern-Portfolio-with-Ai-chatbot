@@ -1,47 +1,42 @@
-# 🚀 Modern Developer Portfolio
+# 🚀 Modern Developer Portfolio — Next.js 16 App Router
 
-A stunning, interactive portfolio website built with React, TypeScript, and Tailwind CSS. Features AI-powered chatbot, project idea generator, and a modern glassmorphism design.
+A high-performance, SEO-optimized portfolio web application built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**. Features pre-rendered Static Site Generation (SSG), Google Search Console verification, an intelligent Google Gemini AI chatbot, an AI project idea generator, and Vercel's Geist design language.
 
-![Portfolio Preview](https://img.shields.io/badge/Portfolio-Live-brightgreen)
-![React](https://img.shields.io/badge/React-19.2.0-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC)
+![Portfolio Status](https://img.shields.io/badge/Next.js-16.4.3-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19.2.0-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss)
+![Google Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google)
+
+---
 
 ## ✨ Features
 
-### 🎨 Modern Design
-- **Glassmorphism UI** with backdrop blur effects
-- **Animated background** with pulsing gradients
-- **3D tilt effects** on interactive cards
-- **Smooth scrolling** navigation
-- **Responsive design** for all devices
+### 🔍 Complete Google SEO & Pre-Rendering
+- **Static Site Generation (SSG)**: Pre-renders 100% of the HTML at build time for instant Googlebot, Bing, and AI crawler indexing.
+- **Dynamic Metadata & Social Previews**: Full Open Graph, Twitter Cards, canonical tags, and robots directives.
+- **Search Console Verification**: Integrated Google Search Console verification (`google4832c2918afe1cd2.html` and metadata).
+- **Auto-generated Sitemap & Robots**: `app/sitemap.ts` and `app/robots.ts` automatically produce standard XML sitemaps and crawler policies.
+- **JSON-LD Structured Data**: Embedded schema markup (`Person`, `SoftwareEngineer`) for rich search snippet cards.
 
-### 🤖 AI-Powered Components
-- **AI Chatbot** - Interactive assistant powered by Google Gemini AI
-- **Project Idea Generator** - AI-generated project suggestions based on keywords
-- **Personalized responses** about skills and experience
+### 🎨 Vercel Geist Design System
+- **Geist & Geist Mono Typography**: Loaded with zero layout shift via `next/font/google`.
+- **5-Stop Hero Mesh Gradient**: Subtle radial mesh background blooming behind the hero.
+- **Hairline Cards & Interactive Modals**: Border transitions, shadow elevations, and certificate preview dialogs.
+- **Smooth Navigation & Scrollspy**: Smooth scrolling between sections with IntersectionObserver tracking.
 
-### 📱 Interactive Sections
-- **Hero Section** - Animated typewriter effect with role rotation
-- **About Section** - 3D tilt card with downloadable resume
-- **Skills Section** - Colorful tech stack with official brand icons
-- **Projects Section** - Showcase with live demos and GitHub links
-- **Contact Section** - Direct email and social media links
+### 🤖 AI-Powered Capabilities
+- **AI Chatbot**: Intelligent interactive assistant powered by Google Gemini API (`@google/genai`) with server-side security via Next.js Route Handlers (`app/api/chat/route.ts`) and offline fallback engine.
+- **Project Concept Generator**: Live idea generator utilizing Gemini function calling and structured JSON output.
+- **WebMCP Integration**: Native browser agent tool registration for AI browser agents.
 
-### 🛠️ Technical Features
-- **TypeScript** for type safety
-- **Vite** for fast development and building
-- **Component-based architecture**
-- **Custom SVG icons** with brand colors
-- **Smooth animations** and transitions
-- **SEO optimized**
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
-- Google AI API key (for chatbot and project generator)
+- Node.js (v18.18 or higher recommended)
+- npm, pnpm, or yarn
 
 ### Installation
 
@@ -56,155 +51,69 @@ A stunning, interactive portfolio website built with React, TypeScript, and Tail
    npm install
    ```
 
-3. **Set up environment variables**
-   Create a `.env` file in the root directory:
+3. **Set up environment variables (optional)**
+   Copy `.env.example` to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Add your Google Gemini API key:
    ```env
-   VITE_API_KEY=your_google_ai_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
-4. **Start development server**
+4. **Start the development server (with Turbopack)**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to `http://localhost:5173`
-
-## 🔧 Configuration
-
-### Google AI Setup
-1. Get your API key from [Google AI Studio](https://aistudio.google.com/)
-2. Add it to your `.env` file as `VITE_API_KEY`
-3. The chatbot and project generator will automatically work
-
-### Customization
-- **Personal Info**: Update `components/About.tsx` and `components/Hero.tsx`
-- **Projects**: Modify `projectsData` in `components/Projects.tsx`
-- **Skills**: Update `skillsData` in `components/Skills.tsx`
-- **Contact**: Change links in `components/Contact.tsx`
-- **Resume**: Replace `public/Syed_Ali_Hashmi_Resume..pdf` with your resume
-
-## 📁 Project Structure
-
-```
-├── components/
-│   ├── About.tsx           # About section with 3D card
-│   ├── Chatbot.tsx         # AI-powered chatbot
-│   ├── Contact.tsx         # Contact information
-│   ├── Footer.tsx          # Footer component
-│   ├── Header.tsx          # Navigation header
-│   ├── Hero.tsx            # Landing section
-│   ├── IconComponents.tsx  # Custom SVG icons
-│   ├── Projects.tsx        # Project showcase
-│   ├── ProjectIdeaGenerator.tsx # AI project generator
-│   ├── Section.tsx         # Reusable section wrapper
-│   └── Skills.tsx          # Tech stack display
-├── public/
-│   ├── images/            # Project screenshots
-│   └── *.pdf             # Resume file
-├── App.tsx               # Main app component
-├── types.ts              # TypeScript definitions
-└── index.html           # HTML template
-```
-
-## 🎨 Tech Stack
-
-### Frontend
-- **React 19.2.0** - UI library
-- **TypeScript 5.8.2** - Type safety
-- **Tailwind CSS** - Styling framework
-- **Vite 7.2.0** - Build tool
-
-### AI Integration
-- **Google Gemini AI** - Chatbot and content generation
-- **@google/genai** - AI SDK
-
-### Icons & Assets
-- **Custom SVG icons** with official brand colors
-- **Poppins font** from Google Fonts
-- **Responsive images** with optimization
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Add `VITE_API_KEY` to environment variables
-4. Deploy automatically
-
-### Netlify
-1. Build the project: `npm run build`
-2. Upload the `dist` folder to Netlify
-3. Set environment variables in Netlify dashboard
-
-### Manual Deployment
-```bash
-npm run build
-# Upload dist/ folder to your hosting provider
-```
-
-## 🎯 Key Components
-
-### AI Chatbot
-- Powered by Google Gemini AI
-- Personalized responses about the developer
-- Smooth chat interface with typing indicators
-- Context-aware conversations
-
-### Project Idea Generator
-- AI-generated project suggestions
-- Keyword-based customization
-- JSON-structured responses
-- Interactive UI with loading states
-
-### Skills Section
-- Official brand colors for tech icons
-- Hover animations and effects
-- Categorized skill groups
-- Responsive grid layout
-
-## 🔒 Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_API_KEY` | Google AI API key | Yes |
-
-## 📱 Browser Support
-
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👨‍💻 Developer
-
-**Syed Ali Hashmi**
-- 🌐 Portfolio: [Live Demo](https://your-portfolio-url.com)
-- 💼 LinkedIn: [alihashmi2288](https://linkedin.com/in/alihashmi2288)
-- 🐙 GitHub: [alihashmi2288](https://github.com/alihashmi2288)
-- 📧 Email: hashmi.ali2288@gmail.com
-
-## 🙏 Acknowledgments
-
-- Google AI for the Gemini API
-- Tailwind CSS for the styling framework
-- React team for the amazing library
-- All the open-source contributors
+5. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ---
 
-⭐ **Star this repository if you found it helpful!**
+## 🏗️ Project Architecture
 
-Built with ❤️ by Syed Ali Hashmi
+```
+├── app/
+│   ├── api/
+│   │   ├── chat/route.ts            # Secure Gemini Chatbot Route Handler
+│   │   └── generate-idea/route.ts   # Secure Project Idea Generator Route Handler
+│   ├── globals.css                  # Tailwind styles + Vercel design system rules
+│   ├── layout.tsx                   # Root HTML shell, Geist fonts & SEO metadata
+│   ├── page.tsx                     # Main page entry point
+│   ├── robots.ts                    # Dynamic robots.txt generator
+│   └── sitemap.ts                   # Dynamic sitemap.xml generator
+├── components/
+│   ├── Header.tsx                   # Fixed nav with scrollspy & mobile menu
+│   ├── Hero.tsx                     # Typewriter effect & hero CTAs
+│   ├── About.tsx                    # Interactive background & milestone tabs
+│   ├── Services.tsx                 # Core engineering offerings
+│   ├── Skills.tsx                   # Filterable technology stack
+│   ├── Projects.tsx                 # Featured projects showcase & modal preview
+│   ├── Certifications.tsx           # Verified Google & IBM credentials
+│   ├── Contact.tsx                  # Accessible contact form & socials
+│   ├── Footer.tsx                   # Monogram & quick navigation
+│   ├── Chatbot.tsx                  # Gemini AI Chatbot with offline engine
+│   ├── ProjectIdeaGenerator.tsx     # Gemini concept architect
+│   └── Toast.tsx                    # Accessible status notifications
+├── hooks/
+│   └── useWebMCP.ts                 # WebMCP AI agent tool integration
+├── public/
+│   ├── certificates/                # Certificate preview images and PDFs
+│   ├── images/                      # High-res project mockups and screenshots
+│   ├── google4832c2918afe1cd2.html  # Google Search Console verification
+│   └── Syed Ali Hashmi Resume.pdf   # Downloadable resume
+├── next.config.ts                   # Next.js configuration
+├── tailwind.config.ts               # Tailwind design system tokens
+└── tsconfig.json                    # TypeScript configuration
+```
+
+---
+
+## 🚢 Production Deployment
+
+### Deploy to Vercel (Recommended)
+1. Push your repository to GitHub.
+2. Import the project into [Vercel](https://vercel.com).
+3. Set `GEMINI_API_KEY` in the Environment Variables section.
+4. Vercel automatically detects Next.js and deploys with optimal edge caching and static pre-rendering.

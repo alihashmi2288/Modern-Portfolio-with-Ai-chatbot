@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
 import { MessageSquareIcon, SendIcon, SparklesIcon } from './IconComponents';
@@ -360,6 +362,25 @@ const Chatbot: React.FC = () => {
           setIsLoading(false);
           return;
         }
+      }
+
+      // Try server-side Next.js route handler
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: textToSend }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.text) {
+            setMessages((prev) => [...prev, { role: 'model', text: data.text }]);
+            setIsLoading(false);
+            return;
+          }
+        }
+      } catch (routeErr) {
+        // Fall through to offline knowledge engine
       }
 
       // Comprehensive offline intelligent knowledge engine

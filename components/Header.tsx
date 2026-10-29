@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import type { SectionId } from '../types';
 import { DownloadIcon, VercelIcon } from './IconComponents';

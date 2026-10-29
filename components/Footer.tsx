@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { SectionId } from '../types';
 import { GithubIcon, LinkedinIcon, MailIcon, VercelIcon } from './IconComponents';
