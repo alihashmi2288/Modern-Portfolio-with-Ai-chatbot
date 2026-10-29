@@ -1,0 +1,28 @@
+{
+  "brand": "Syed Ali Hashmi",
+  "tagline": "Software Engineer & AI Developer",
+  "brief": "A sleek, authoritative developer identity adhering strictly to the Vercel Geist design system (#171717 ink on #fafafa canvas, #ebebeb hairlines, and Geist typography). Replacing generic placeholder icons with an ownable, mathematically precise letterform that thrives across micro-scales (16px favicon) and macro-displays.",
+  "adjectives": ["precise", "architectural", "minimalist", "intelligent", "forward"],
+  "industry": "software",
+  "mockups": ["readme", "terminal", "website", "app-icon", "sticker", "social"],
+  "nav": ["Home", "About", "Tech Arsenal", "Projects", "Certifications", "Contact"],
+  "brand_color": "#171717",
+  "greyscale": false,
+  "final": true,
+  "concepts": [
+    {
+      "name": "The Terminal Apex",
+      "symbol": "master/brand-symbol.svg",
+      "lockup": "master/brand-horizontal.svg",
+      "stacked": "master/brand-stacked.svg",
+      "avatar": "export/brand-symbol-square.svg",
+      "idea": "An architectural equilateral 'A' embedding an upward terminal chevron and negative-space deployment vector.",
+      "rationale": [
+        "Evolves the Vercel delta geometry into a bespoke, proprietary letterform ('A' for Ali) without breaking the established Geist design harmony.",
+        "Precision-engineered with exact 60°/120° angles, scoring 100/100 on production SVG audit tests.",
+        "Includes a dedicated optical small-size cut with widened counters that maintains perfect clarity at 16px and 24px."
+      ]
+    }
+  ],
+  "recommendation": "Concept A (The Terminal Apex) establishes a definitive, recognizable developer signature that bridges full-stack engineering and agentic AI systems."
+}

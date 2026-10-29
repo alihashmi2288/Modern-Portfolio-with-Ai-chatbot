@@ -2,7 +2,8 @@
 
 import React from 'react';
 import type { SectionId } from '../types';
-import { GithubIcon, LinkedinIcon, MailIcon, VercelIcon } from './IconComponents';
+import { GithubIcon, LinkedinIcon, MailIcon } from './IconComponents';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   onNavigate: (section: SectionId) => void;
@@ -17,9 +18,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer className="border-t border-[#ebebeb] bg-[#fafafa] py-14 text-center text-[#8f8f8f] relative">
       <div className="container mx-auto max-w-[1200px] px-6 md:px-10 space-y-6">
         {/* Logo / Monogram */}
-        <div className="flex items-center justify-center gap-2">
-          <VercelIcon className="w-5 h-5 text-[#171717] fill-current" />
-          <span className="font-semibold text-sm text-[#171717] tracking-tight">Syed Ali Hashmi</span>
+        <div className="flex items-center justify-center gap-2.5">
+          <BrandLogo className="w-6 h-6 sm:w-7 sm:h-7 text-[#171717] fill-current" />
+          <span className="font-semibold text-base text-[#171717] tracking-tight">Syed Ali Hashmi</span>
         </div>
 
         {/* Navigation Quick Links */}
@@ -50,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             href="https://github.com/alihashmi2288"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-colors"
+            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-[border-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
             aria-label="GitHub"
           >
             <GithubIcon className="w-4 h-4" />
@@ -59,14 +60,14 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             href="https://linkedin.com/in/hashmiali2288"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-colors"
+            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-[border-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
             aria-label="LinkedIn"
           >
             <LinkedinIcon className="w-4 h-4" />
           </a>
           <a
             href="mailto:hashmi.ali2288@gmail.com"
-            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-colors"
+            className="p-2 rounded-[6px] border border-[#ebebeb] bg-white hover:text-[#171717] hover:border-[#171717] shadow-whisper transition-[border-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
             aria-label="Email"
           >
             <MailIcon className="w-4 h-4" />

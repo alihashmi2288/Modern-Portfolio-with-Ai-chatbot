@@ -127,18 +127,19 @@ const Services = forwardRef<HTMLElement>((props, ref) => {
 
       {/* Services Grid (3-column desktop, 2-column tablet, 1-column mobile) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesData.map((service) => {
+        {servicesData.map((service, index) => {
           const Icon = service.icon;
           return (
             <div
               key={service.id}
-              className="feature-card bg-white border border-[#ebebeb] rounded-[12px] p-6 sm:p-7 shadow-whisper hover:border-[#171717] transition-all flex flex-col justify-between group"
+              style={{ animationDelay: `${index * 50}ms` }}
+              className="feature-card hover-lift bg-white border border-[#ebebeb] rounded-[12px] p-6 sm:p-7 shadow-whisper transition-[border-color,box-shadow,transform] duration-160 ease-out-strong flex flex-col justify-between group reveal-on-scroll"
             >
               <div>
                 {/* Header row: Icon + Monospace numeric indicator */}
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-10 h-10 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex items-center justify-center text-[#171717] group-hover:bg-[#171717] group-hover:text-white transition-colors duration-200">
-                    <Icon className="w-5 h-5 transition-transform duration-200 group-hover:scale-105" />
+                  <div className="w-10 h-10 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex items-center justify-center text-[#171717] group-hover:bg-[#171717] group-hover:text-white transition-colors duration-160 ease-out-strong">
+                    <Icon className="w-5 h-5 transition-transform duration-160 ease-out-strong group-hover:scale-105" />
                   </div>
                   <span className="font-mono text-[11px] text-[#8f8f8f] bg-[#f2f2f2] px-2 py-0.5 rounded-[6px] border border-[#ebebeb]">
                     {service.number}

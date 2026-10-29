@@ -95,7 +95,7 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-3.5 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-all ${
+              className={`px-3.5 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer ${
                 selectedCategory === category
                   ? 'bg-[#171717] text-white shadow-sm'
                   : 'text-[#4d4d4d] hover:text-[#171717]'
@@ -113,7 +113,7 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
             placeholder="Search stack..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-1.5 text-sm text-[#171717] placeholder-[#8f8f8f] shadow-whisper focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] transition-all"
+            className="w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-1.5 text-sm text-[#171717] placeholder-[#8f8f8f] shadow-whisper focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] transition-[border-color,box-shadow] duration-150 ease-out"
           />
           {searchQuery && (
             <button
@@ -129,21 +129,22 @@ const Skills = forwardRef<HTMLElement>((props, ref) => {
 
       {/* Skills Grid: Hairline Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
-        {filteredSkills.map((skill) => {
+        {filteredSkills.map((skill, index) => {
           const Icon = skill.icon;
           return (
             <div
-              key={skill.name}
-              className="group feature-card p-4 sm:p-5 flex flex-col items-center justify-center text-center relative overflow-hidden"
+              key={`${selectedCategory}-${searchQuery}-${skill.name}`}
+              style={{ animationDelay: `${index * 30}ms` }}
+              className="group feature-card hover-lift p-4 sm:p-5 flex flex-col items-center justify-center text-center relative overflow-hidden filter-item-enter"
             >
               <div className="absolute top-2.5 right-2.5">
-                <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#8f8f8f] border border-[#ebebeb] group-hover:text-[#171717] transition-colors">
+                <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#8f8f8f] border border-[#ebebeb] group-hover:text-[#171717] transition-colors duration-160">
                   {skill.level}
                 </span>
               </div>
               
-              <div className="w-11 h-11 mb-3 flex items-center justify-center rounded-[8px] bg-[#fafafa] border border-[#ebebeb] group-hover:border-[#171717] transition-all duration-200">
-                <Icon className="w-6 h-6 text-[#171717]" />
+              <div className="w-11 h-11 mb-3 flex items-center justify-center rounded-[8px] bg-[#fafafa] border border-[#ebebeb] group-hover:border-[#171717] group-hover:scale-105 transition-[border-color,background-color,transform] duration-160 ease-out-strong">
+                <Icon className="w-6 h-6 text-[#171717] transition-transform duration-160 ease-out-strong" />
               </div>
 
               <h3 className="font-semibold text-sm sm:text-base text-[#171717]">

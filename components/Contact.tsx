@@ -113,7 +113,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
               </div>
               <button
                 onClick={() => copyToClipboard('hashmi.ali2288@gmail.com', 'Email')}
-                className="text-xs font-mono font-medium px-2.5 py-1 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] transition-colors shadow-whisper"
+                className="text-xs font-mono font-medium px-2.5 py-1 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-whisper cursor-pointer"
                 title="Copy email"
               >
                 Copy
@@ -135,7 +135,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
               </div>
               <button
                 onClick={() => copyToClipboard('+92 319 7345923', 'Phone number')}
-                className="text-xs font-mono font-medium px-2.5 py-1 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] transition-colors shadow-whisper"
+                className="text-xs font-mono font-medium px-2.5 py-1 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-whisper cursor-pointer"
                 title="Copy phone"
               >
                 Copy
@@ -162,7 +162,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 href="https://github.com/alihashmi2288"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-xs sm:text-sm transition-all shadow-whisper"
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-xs sm:text-sm transition-[border-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-whisper"
               >
                 <GithubIcon className="w-4 h-4" />
                 <span>GitHub</span>
@@ -171,7 +171,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 href="https://linkedin.com/in/hashmiali2288"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-xs sm:text-sm transition-all shadow-whisper"
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-xs sm:text-sm transition-[border-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-whisper"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 <span>LinkedIn</span>
@@ -204,7 +204,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 onChange={handleChange}
                 placeholder="Your Name"
                 aria-errormessage="name-error"
-                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-all"
+                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-[border-color,box-shadow] duration-150 ease-out"
               />
               <span id="name-error" className="error-message hidden text-xs font-mono text-[#ee0000] mt-1 pl-1">
                 Please provide your name (at least 2 characters).
@@ -225,7 +225,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 onChange={handleChange}
                 placeholder="you@example.com"
                 aria-errormessage="email-error"
-                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-all"
+                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-[border-color,box-shadow] duration-150 ease-out"
               />
               <span id="email-error" className="error-message hidden text-xs font-mono text-[#ee0000] mt-1 pl-1">
                 Please enter a valid email address.
@@ -244,7 +244,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="e.g. Full-Stack / AI Opportunity or Collaboration"
-                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-all"
+                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-[border-color,box-shadow] duration-150 ease-out"
               />
             </div>
 
@@ -263,7 +263,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 onChange={handleChange}
                 placeholder="Tell me about your project, team, or opportunity..."
                 aria-errormessage="message-error"
-                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-all resize-none"
+                className="form-input w-full bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] text-sm shadow-whisper transition-[border-color,box-shadow] duration-150 ease-out resize-none"
               ></textarea>
               <span id="message-error" className="error-message hidden text-xs font-mono text-[#ee0000] mt-1 pl-1">
                 Please write a message with at least 10 characters.
@@ -275,7 +275,7 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-[100px] font-medium text-white bg-[#171717] hover:bg-black/90 active:scale-[0.98] transition-all disabled:opacity-60 text-sm shadow-sm"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-[100px] font-medium text-white bg-[#171717] hover:bg-black/90 transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] disabled:opacity-60 text-sm shadow-sm cursor-pointer"
               >
                 {isSubmitting ? (
                   <>

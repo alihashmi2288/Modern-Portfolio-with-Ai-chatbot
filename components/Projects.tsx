@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 import type { Project } from '../types';
 import Section from './Section';
 import { GithubIcon, ExternalLinkIcon } from './IconComponents';
-import ProjectIdeaGenerator from './ProjectIdeaGenerator';
 
 const projectsData: Project[] = [
   {
@@ -88,7 +87,7 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-[background-color,color,border-color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer ${
                 selectedCategory === cat
                   ? 'bg-[#171717] text-white shadow-sm'
                   : 'bg-white text-[#4d4d4d] hover:text-[#171717] border border-[#ebebeb] shadow-whisper'
@@ -106,8 +105,9 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
           const isOdd = index % 2 === 1;
           return (
             <div
-              key={project.title}
-              className="bg-white p-6 sm:p-8 rounded-[16px] border border-[#ebebeb] shadow-whisper hover:shadow-floating transition-all grid md:grid-cols-12 gap-8 items-center reveal-on-scroll"
+              key={`${selectedCategory}-${project.title}`}
+              style={{ animationDelay: `${index * 40}ms` }}
+              className="bg-white p-6 sm:p-8 rounded-[16px] border border-[#ebebeb] shadow-whisper hover:shadow-floating transition-[box-shadow,border-color,transform] duration-200 ease-out-strong grid md:grid-cols-12 gap-8 items-center filter-item-enter"
             >
               {/* Image Preview Thumbnail in Hairline Device Frame */}
               <div
@@ -120,13 +120,13 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-300"
+                    className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-200 ease-out-strong"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop';
                     }}
                   />
-                  <div className="absolute inset-0 bg-[#171717]/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
-                    <span className="px-3.5 py-1.5 rounded-[100px] bg-white border border-[#ebebeb] text-xs font-mono font-medium text-[#171717] shadow-floating">
+                  <div className="absolute inset-0 bg-[#171717]/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-160 ease-out-strong">
+                    <span className="px-3.5 py-1.5 rounded-[100px] bg-white border border-[#ebebeb] text-xs font-mono font-medium text-[#171717] shadow-floating transform scale-95 group-hover:scale-100 transition-transform duration-160 ease-out-strong">
                       Click to Preview
                     </span>
                   </div>
@@ -166,7 +166,7 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[6px] bg-[#171717] text-white font-medium text-sm hover:bg-black/90 transition-colors shadow-sm"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[6px] bg-[#171717] text-white font-medium text-sm hover:bg-black/90 transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-sm cursor-pointer"
                     >
                       <ExternalLinkIcon className="w-3.5 h-3.5" />
                       <span>Live Demo</span>
@@ -177,7 +177,7 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-sm transition-colors shadow-whisper"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[6px] bg-white border border-[#ebebeb] hover:border-[#171717] text-[#171717] font-medium text-sm transition-[border-color,color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-whisper cursor-pointer"
                     >
                       <GithubIcon className="w-3.5 h-3.5" />
                       <span>Repository</span>
@@ -195,11 +195,11 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 animate-fade-in"
+          className="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 transition-opacity duration-250 ease-out-strong animate-fade-in"
           onClick={() => setPreviewImage(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-white border border-[#ebebeb] rounded-[16px] overflow-hidden shadow-floating-lg"
+            className="relative max-w-4xl w-full bg-white border border-[#ebebeb] rounded-[16px] overflow-hidden shadow-floating-lg origin-center transition-[transform,opacity] duration-250 ease-out-strong animate-modal-enter will-change-[transform,opacity]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-4 border-b border-[#ebebeb]">
@@ -224,10 +224,6 @@ const Projects = forwardRef<HTMLElement>((props, ref) => {
         document.body
       )}
 
-      {/* AI Idea Generator Section */}
-      <div className="mt-20 sm:mt-28">
-        <ProjectIdeaGenerator />
-      </div>
     </Section>
   );
 });

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 256" width="960" height="256" role="img" aria-labelledby="title-lockup-b">
+  <title id="title-lockup-b">Syed Ali Hashmi - Concept B Lockup</title>
+  <g transform="translate(44, 32) scale(0.75)">
+    <path fill="#171717" fill-rule="evenodd" d="
+      M 93 42
+      L 146 84
+      V 134
+      H 180
+      V 44
+      H 216
+      V 212
+      H 180
+      V 166
+      H 146
+      V 212
+      H 110
+      V 166
+      H 76
+      V 212
+      H 40
+      V 84
+      Z
+      M 93 78
+      L 76 92
+      V 134
+      H 110
+      V 92
+      Z
+    "/>
+  </g>
+  <text x="260" y="142" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="64" font-weight="600" letter-spacing="-2px" fill="#171717">Syed Ali Hashmi</text>
+  <text x="264" y="184" font-family="'Geist Mono', SFMono-Regular, Menlo, monospace" font-size="20" font-weight="500" letter-spacing="1.5px" fill="#8f8f8f">SOFTWARE &amp; AI ENGINEER</text>
+</svg>

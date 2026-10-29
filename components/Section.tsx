@@ -44,16 +44,15 @@ const Section = forwardRef<HTMLElement, SectionProps>(({ children, className = '
         (internalRef as React.MutableRefObject<HTMLElement | null>).current = el;
     };
 
-
     const animationClasses = isVisible
-        ? 'opacity-100 translate-y-0 scale-100 filter-none'
-        : 'opacity-0 translate-y-8 scale-95 blur-sm';
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 translate-y-4';
 
     return (
         <section
             id={id}
             ref={combinedRef}
-            className={`py-24 md:py-32 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${animationClasses} ${className}`}
+            className={`py-24 md:py-32 transition-[opacity,transform] duration-400 ease-out-strong ${animationClasses} ${className}`}
         >
             {children}
         </section>

@@ -417,28 +417,35 @@ const Chatbot: React.FC = () => {
       <button
         id="chatbot-toggle-btn"
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] w-14 h-14 p-3.5 rounded-full bg-[#171717] text-white shadow-floating hover:scale-105 active:scale-95 transition-all duration-200 group flex items-center justify-center cursor-pointer"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] w-14 h-14 p-3.5 rounded-full bg-[#171717] text-white shadow-floating transition-[transform,background-color] duration-160 ease-out-strong active:scale-[0.97] group flex items-center justify-center cursor-pointer will-change-transform"
         aria-label="Toggle AI Portfolio Assistant"
         aria-expanded={isOpen}
       >
-        <div className="relative flex items-center justify-center">
-          {isOpen ? (
-            <svg className="w-6 h-6 text-white transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="relative w-6 h-6 flex items-center justify-center">
+          <span
+            className={`absolute transition-[transform,opacity] duration-200 ease-out-strong ${
+              isOpen ? 'rotate-90 opacity-100 scale-100' : 'rotate-0 opacity-0 scale-90 pointer-events-none'
+            }`}
+          >
+            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
-          ) : (
-            <>
-              <MessageSquareIcon className="w-6 h-6 text-white" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#50e3c2] ring-2 ring-[#171717]"></span>
-            </>
-          )}
+          </span>
+          <span
+            className={`absolute transition-[transform,opacity] duration-200 ease-out-strong ${
+              !isOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-90 pointer-events-none'
+            }`}
+          >
+            <MessageSquareIcon className="w-6 h-6 text-white" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#50e3c2] ring-2 ring-[#171717]"></span>
+          </span>
         </div>
       </button>
 
       {/* Floating Chat Modal: Positioned right above the floating toggle button */}
       <div
         id="chatbot-modal-window"
-        className={`fixed bottom-[84px] sm:bottom-[88px] right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[410px] h-[560px] max-h-[calc(100vh-110px)] z-[60] transition-all duration-200 ease-out origin-bottom-right ${
+        className={`fixed bottom-[84px] sm:bottom-[88px] right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[410px] h-[560px] max-h-[calc(100vh-110px)] z-[60] transition-[transform,opacity] duration-200 ease-out-strong origin-bottom-right will-change-[transform,opacity] ${
           isOpen
             ? 'opacity-100 scale-100 pointer-events-auto'
             : 'opacity-0 scale-95 pointer-events-none'
@@ -467,14 +474,14 @@ const Chatbot: React.FC = () => {
             <div className="flex items-center gap-1">
               <button
                 onClick={clearChat}
-                className="text-[#8f8f8f] hover:text-[#171717] px-2 py-1 rounded-[6px] hover:bg-[#f2f2f2] text-xs font-mono transition-colors"
+                className="text-[#8f8f8f] hover:text-[#171717] px-2 py-1 rounded-[6px] hover:bg-[#f2f2f2] text-xs font-mono transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
                 title="Clear chat history"
               >
                 Clear
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-[#8f8f8f] hover:text-[#171717] p-1.5 rounded-[6px] hover:bg-[#f2f2f2] text-lg leading-none transition-colors"
+                className="text-[#8f8f8f] hover:text-[#171717] p-1.5 rounded-[6px] hover:bg-[#f2f2f2] text-lg leading-none transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
                 aria-label="Close chat"
               >
                 &times;
@@ -488,7 +495,7 @@ const Chatbot: React.FC = () => {
               <button
                 key={i}
                 onClick={() => sendMessage(prompt)}
-                className="shrink-0 text-[11px] font-mono font-medium px-2.5 py-1 rounded-[64px] bg-white hover:bg-[#f2f2f2] border border-[#ebebeb] text-[#4d4d4d] hover:text-[#171717] transition-colors whitespace-nowrap shadow-whisper cursor-pointer"
+                className="shrink-0 text-[11px] font-mono font-medium px-2.5 py-1 rounded-[64px] bg-white hover:bg-[#f2f2f2] border border-[#ebebeb] text-[#4d4d4d] hover:text-[#171717] transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97] whitespace-nowrap shadow-whisper cursor-pointer"
               >
                 {prompt}
               </button>
@@ -500,7 +507,7 @@ const Chatbot: React.FC = () => {
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`chat-message-bubble flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
                   className={`max-w-[88%] text-xs sm:text-sm py-2.5 px-3.5 leading-relaxed ${
@@ -516,9 +523,9 @@ const Chatbot: React.FC = () => {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="py-2.5 px-4 rounded-[12px] rounded-bl-[2px] bg-[#f8f9fa] border border-[#ebebeb] text-[#8f8f8f] text-xs flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce"></div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce [animation-delay:0.2s]"></div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-bounce [animation-delay:0.4s]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-pulse"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-pulse [animation-delay:150ms]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#171717] animate-pulse [animation-delay:300ms]"></div>
                   <span className="text-[11px] font-mono ml-1 text-[#8f8f8f]">thinking...</span>
                 </div>
               </div>
@@ -536,13 +543,13 @@ const Chatbot: React.FC = () => {
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               placeholder="Ask about skills, projects, certifications, hiring..."
-              className="flex-grow bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-xs sm:text-sm text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] shadow-whisper transition-all"
+              className="flex-grow bg-white border border-[#ebebeb] rounded-[6px] px-3.5 py-2 text-xs sm:text-sm text-[#171717] placeholder-[#8f8f8f] focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3] shadow-whisper transition-[border-color,box-shadow] duration-150 ease-out"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading || !userInput.trim()}
-              className="p-2.5 rounded-[6px] bg-[#171717] hover:bg-black/90 text-white disabled:opacity-40 transition-colors shadow-sm shrink-0 cursor-pointer flex items-center justify-center"
+              className="p-2.5 rounded-[6px] bg-[#171717] hover:bg-black/90 text-white disabled:opacity-40 transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] shadow-sm shrink-0 cursor-pointer flex items-center justify-center"
               aria-label="Send message"
             >
               <SendIcon className="w-4 h-4" />

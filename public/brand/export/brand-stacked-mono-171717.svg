@@ -1,0 +1,22 @@
+<svg fill="#171717" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="brand-stacked-title"><title>Syed Ali Hashmi Logo</title>
+  <title id="brand-stacked-title">Syed Ali Hashmi — Stacked Brand Lockup</title>
+  <g id="symbol" transform="translate(148, 64) scale(0.84375)">
+    <path fill="#171717" fill-rule="evenodd" d="
+      M 128.000 45.723
+      L 224.000 212.000
+      H 166.105
+      L 128.000 146.000
+      L 89.895 212.000
+      H 32.000
+      Z
+      M 128.000 84.000
+      L 153.403 128.000
+      H 102.597
+      Z
+    "/>
+  </g>
+  <g id="wordmark" text-anchor="middle">
+    <text x="256" y="372" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="44" font-weight="600" letter-spacing="-1.5px" fill="#171717">Syed Ali Hashmi</text>
+    <text x="256" y="416" font-family="'Geist Mono', SFMono-Regular, Menlo, monospace" font-size="18" font-weight="500" letter-spacing="2px" fill="#171717">SOFTWARE &amp; AI ENGINEER</text>
+  </g>
+</svg>

@@ -143,7 +143,7 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-1.5 rounded-[64px] text-xs sm:text-sm font-medium transition-[background-color,color,border-color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer ${
                 selectedCategory === cat
                   ? 'bg-[#171717] text-white shadow-sm'
                   : 'bg-white text-[#4d4d4d] hover:text-[#171717] border border-[#ebebeb] shadow-whisper'
@@ -157,14 +157,15 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
 
       {/* Certifications Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {filteredCerts.map((cert) => {
+        {filteredCerts.map((cert, index) => {
           const badge = issuerBadges[cert.issuerCode] || issuerBadges.google;
           const isInProgress = cert.status === 'In Progress';
 
           return (
             <div
-              key={cert.id}
-              className="bg-white border border-[#ebebeb] rounded-[16px] p-6 flex flex-col justify-between hover:border-[#d4d4d4] hover:shadow-floating transition-all duration-300 group"
+              key={`${selectedCategory}-${cert.id}`}
+              style={{ animationDelay: `${index * 40}ms` }}
+              className="bg-white border border-[#ebebeb] rounded-[16px] p-6 flex flex-col justify-between hover:border-[#d4d4d4] hover:shadow-floating transition-[box-shadow,border-color,transform] duration-200 ease-out-strong group filter-item-enter"
             >
               <div>
                 {/* Top Row: Issuer Badge & Status Pill */}
@@ -198,10 +199,10 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
                     <img
                       src={cert.imagePreviewUrl}
                       alt={cert.title}
-                      className="w-full h-full object-cover object-top transition-transform duration-300 group-hover/thumb:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-200 ease-out-strong group-hover/thumb:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/25 transition-all flex items-center justify-center">
-                      <span className="opacity-0 group-hover/thumb:opacity-100 transition-opacity bg-white text-[#171717] text-xs font-medium px-3 py-1.5 rounded-[6px] shadow-sm flex items-center gap-1.5 transform translate-y-1 group-hover/thumb:translate-y-0 duration-200">
+                    <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/25 transition-[background-color] duration-160 ease-out-strong flex items-center justify-center">
+                      <span className="opacity-0 group-hover/thumb:opacity-100 transition-[opacity,transform] duration-160 ease-out-strong bg-white text-[#171717] text-xs font-medium px-3 py-1.5 rounded-[6px] shadow-sm flex items-center gap-1.5 transform translate-y-1 group-hover/thumb:translate-y-0">
                         <FileTextIcon className="w-3.5 h-3.5" />
                         Inspect Credential
                       </span>
@@ -245,7 +246,7 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
                   {cert.imagePreviewUrl ? (
                     <button
                       onClick={() => setPreviewCert(cert)}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#171717] bg-[#f2f2f2] hover:bg-[#ebebeb] px-3 py-1.5 rounded-[6px] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#171717] bg-[#f2f2f2] hover:bg-[#ebebeb] px-3 py-1.5 rounded-[6px] transition-[background-color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer"
                     >
                       <FileTextIcon className="w-3.5 h-3.5" />
                       <span>Inspect Card</span>
@@ -258,7 +259,7 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
                         href={cert.pdfUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-[#4d4d4d] hover:text-[#171717] px-2.5 py-1.5 rounded-[6px] border border-[#ebebeb] hover:border-[#d4d4d4] transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-[#4d4d4d] hover:text-[#171717] px-2.5 py-1.5 rounded-[6px] border border-[#ebebeb] hover:border-[#d4d4d4] transition-[border-color,color,transform] duration-160 ease-out-strong active:scale-[0.97]"
                         title="Download or View PDF Certificate"
                       >
                         <DownloadIcon className="w-3.5 h-3.5" />
@@ -271,7 +272,7 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
                         href={cert.credentialUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-[#0070f3] hover:text-[#0761d1] px-2 py-1.5 transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-[#0070f3] hover:text-[#0761d1] px-2 py-1.5 transition-[color,transform] duration-160 ease-out-strong active:scale-[0.97]"
                         title="Official Organization Verification"
                       >
                         <ExternalLinkIcon className="w-3.5 h-3.5" />
@@ -295,11 +296,11 @@ const Certifications = forwardRef<HTMLElement>((props, ref) => {
       {previewCert &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-250 ease-out-strong animate-fade-in"
             onClick={() => setPreviewCert(null)}
           >
             <div
-              className="relative max-w-2xl w-full bg-white rounded-[16px] border border-[#ebebeb] p-6 shadow-floating animate-scale-up"
+              className="relative max-w-2xl w-full bg-white rounded-[16px] border border-[#ebebeb] p-6 shadow-floating origin-center transition-[transform,opacity] duration-250 ease-out-strong animate-modal-enter will-change-[transform,opacity]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}

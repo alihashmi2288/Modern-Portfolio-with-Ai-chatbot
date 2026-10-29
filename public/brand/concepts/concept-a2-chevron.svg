@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title-a2">
+  <title id="title-a2">Apex Chevron - Concept A</title>
+  <!-- Monolithic A with integrated terminal prompt crossbar -->
+  <path fill="#171717" fill-rule="evenodd" d="
+    M 128 40
+    L 222 212
+    H 176
+    L 153 170
+    L 128 170
+    L 142 142
+    L 128 142
+    L 114 170
+    L 103 170
+    L 80 212
+    H 34
+    L 128 40
+    Z
+    M 128 92
+    L 142 120
+    L 114 120
+    Z
+  "/>
+</svg>

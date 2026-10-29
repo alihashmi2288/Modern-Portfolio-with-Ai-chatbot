@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title-b">
+  <title id="title-b">Interlocking AH Monogram - Concept B</title>
+  <!-- Architectural Monogram uniting 'A' and 'H' with a shared structural pillar -->
+  <path fill="#171717" fill-rule="evenodd" d="
+    M 93 42
+    L 146 84
+    V 134
+    H 180
+    V 44
+    H 216
+    V 212
+    H 180
+    V 166
+    H 146
+    V 212
+    H 110
+    V 166
+    H 76
+    V 212
+    H 40
+    V 84
+    Z
+    M 93 78
+    L 76 92
+    V 134
+    H 110
+    V 92
+    Z
+  "/>
+</svg>

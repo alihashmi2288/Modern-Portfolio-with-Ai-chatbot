@@ -10,6 +10,7 @@ import Projects from '@/components/Projects';
 import Certifications from '@/components/Certifications';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
+import ProjectIdeaGenerator from '@/components/ProjectIdeaGenerator';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import { useWebMCP } from '@/hooks/useWebMCP';
@@ -67,7 +68,7 @@ export default function PortfolioApp() {
         const htmlEl = el as HTMLElement;
         htmlEl.style.opacity = '0';
         htmlEl.style.transform = 'translateY(16px)';
-        htmlEl.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        htmlEl.style.transition = 'opacity 260ms var(--ease-out), transform 260ms var(--ease-out)';
         observer.observe(htmlEl);
       });
 
@@ -86,6 +87,9 @@ export default function PortfolioApp() {
         <Projects ref={projectsRef} />
         <Certifications ref={certificationsRef} />
         <Contact ref={contactRef} />
+        <section id="idea-generator" className="pb-24 md:pb-32">
+          <ProjectIdeaGenerator />
+        </section>
       </main>
       <Footer onNavigate={(id) => scrollToSection(id)} />
       <Chatbot />

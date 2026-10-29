@@ -18,10 +18,23 @@
   --color-link-soft: #d3e5ff;
   color-scheme: light;
   scrollbar-color: #d4d4d4 #fafafa;
+
+  /* Emil Kowalski Animation Tokens */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --duration-100: 100ms;
+  --duration-160: 160ms;
+  --duration-200: 200ms;
+  --duration-250: 250ms;
+  --duration-300: 300ms;
+  --duration-400: 400ms;
 }
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -91,10 +104,12 @@ p, li, blockquote {
   border: 1px solid #ebebeb;
   border-radius: 12px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
-.feature-card:hover {
-  border-color: #171717;
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    border-color: #171717;
+  }
 }
 
 /* Native Scroll-Driven Animations */
@@ -155,4 +170,209 @@ p, li, blockquote {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   Emil Kowalski Design Engineering Utilities & Keyframes
+   ========================================================================== */
+
+@layer utilities {
+  /* Tactile Button Press (Emil Kowalski 160ms scale-0.97 rule) */
+  .btn-press {
+    transition: transform 160ms var(--ease-out);
+    will-change: transform;
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Fine-Pointer Hover Lift */
+  @media (hover: hover) and (pointer: fine) {
+    .hover-lift {
+      transition: transform 160ms var(--ease-out), border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-2px);
+    }
+    .hover-lift-subtle {
+      transition: transform 160ms var(--ease-out), border-color 160ms ease;
+    }
+    .hover-lift-subtle:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  /* Chat Message Bubble Arrival */
+  .chat-message-bubble {
+    animation: messageEnter 180ms var(--ease-out) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Toast Notification with @starting-style */
+  .toast-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 400ms ease, transform 400ms ease;
+    will-change: transform, opacity;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+  }
+  .toast-item[data-exiting='true'] {
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity 160ms ease-out, transform 160ms ease-out;
+  }
+
+  /* Mobile Dropdown Navigation Panel */
+  .mobile-nav-panel {
+    transform-origin: top;
+    animation: mobileNavEnter 200ms var(--ease-out) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Stagger Group Entrance Items */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: staggerIn 250ms var(--ease-out) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Hero Choreographed Load Sequence */
+  .hero-stagger-item {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: heroItemEnter 260ms var(--ease-out) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Filter Transitions (Preventing jarring layout jumps) */
+  .filter-item-enter {
+    animation: filterEnter 200ms var(--ease-out) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Stagger Delays (Strict 30-50ms steps) */
+  .stagger-delay-1 { animation-delay: 40ms; }
+  .stagger-delay-2 { animation-delay: 80ms; }
+  .stagger-delay-3 { animation-delay: 120ms; }
+  .stagger-delay-4 { animation-delay: 160ms; }
+  .stagger-delay-5 { animation-delay: 200ms; }
+  .stagger-delay-6 { animation-delay: 240ms; }
+  .stagger-delay-7 { animation-delay: 280ms; }
+  .stagger-delay-8 { animation-delay: 320ms; }
+
+  /* Floating Breathing Indicator */
+  .float-breathing {
+    animation: floatBreathing 2.2s var(--ease-in-out) infinite;
+  }
+
+  /* Smooth Pulse Beacon for Live Milestones */
+  .pulse-beacon {
+    animation: pulseBeacon 2.2s var(--ease-in-out) infinite;
+  }
+}
+
+/* Keyframes for UI Micro-Interactions */
+@keyframes heroItemEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes filterEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes messageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mobileNavEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scaleY(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes staggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatBreathing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes pulseBeacon {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.5;
+  }
+}
+
+/* Global Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn-press:active,
+  .hover-lift:hover,
+  .hover-lift-subtle:hover {
+    transform: none !important;
+  }
+
+  .chat-message-bubble,
+  .toast-item,
+  .mobile-nav-panel,
+  .stagger-item,
+  .hero-stagger-item,
+  .filter-item-enter,
+  .float-breathing,
+  .pulse-beacon {
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }

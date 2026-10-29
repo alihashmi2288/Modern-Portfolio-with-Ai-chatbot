@@ -26,7 +26,7 @@ const About = forwardRef<HTMLElement>((props, ref) => {
           <div className="inline-flex p-1 rounded-[64px] bg-[#f2f2f2] border border-[#ebebeb]">
             <button
               onClick={() => setActiveTab('story')}
-              className={`px-5 py-2 rounded-[64px] text-sm font-medium transition-all ${
+              className={`px-5 py-2 rounded-[64px] text-sm font-medium transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer ${
                 activeTab === 'story'
                   ? 'bg-[#171717] text-white shadow-sm'
                   : 'text-[#4d4d4d] hover:text-[#171717]'
@@ -36,7 +36,7 @@ const About = forwardRef<HTMLElement>((props, ref) => {
             </button>
             <button
               onClick={() => setActiveTab('journey')}
-              className={`px-5 py-2 rounded-[64px] text-sm font-medium transition-all ${
+              className={`px-5 py-2 rounded-[64px] text-sm font-medium transition-[background-color,color,transform] duration-160 ease-out-strong active:scale-[0.97] cursor-pointer ${
                 activeTab === 'journey'
                   ? 'bg-[#171717] text-white shadow-sm'
                   : 'text-[#4d4d4d] hover:text-[#171717]'
@@ -47,7 +47,7 @@ const About = forwardRef<HTMLElement>((props, ref) => {
           </div>
 
           {activeTab === 'story' ? (
-            <div className="space-y-4 text-[#4d4d4d] text-base sm:text-[17px] leading-relaxed bg-white border border-[#ebebeb] p-6 sm:p-8 rounded-[12px] shadow-whisper animate-fade-in">
+            <div className="space-y-4 text-[#4d4d4d] text-base sm:text-[17px] leading-relaxed bg-white border border-[#ebebeb] p-6 sm:p-8 rounded-[12px] shadow-whisper filter-item-enter">
               <p>
                 I'm a Software Engineering student at <strong className="text-[#171717] font-semibold">UBIT, University of Karachi</strong> (currently in my 6th semester), with direct experience architecting high-performance full-stack web applications and AI-driven systems.
               </p>
@@ -64,7 +64,7 @@ const About = forwardRef<HTMLElement>((props, ref) => {
                   download="Syed Ali Hashmi Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white hover:bg-[#fafafa] text-[#171717] font-medium text-sm py-2.5 px-5 rounded-[100px] border border-[#ebebeb] shadow-whisper hover:border-[#171717] transition-all"
+                  className="inline-flex items-center gap-2 bg-white hover:bg-[#fafafa] text-[#171717] font-medium text-sm py-2.5 px-5 rounded-[100px] border border-[#ebebeb] shadow-whisper hover:border-[#171717] transition-[border-color,transform] duration-160 ease-out-strong active:scale-[0.97]"
                 >
                   <DownloadIcon className="w-4 h-4" />
                   <span>Download Resume</span>
@@ -72,18 +72,22 @@ const About = forwardRef<HTMLElement>((props, ref) => {
               </div>
             </div>
           ) : (
-            <div className="bg-white border border-[#ebebeb] p-6 sm:p-8 rounded-[12px] shadow-whisper animate-fade-in">
+            <div className="bg-white border border-[#ebebeb] p-6 sm:p-8 rounded-[12px] shadow-whisper filter-item-enter">
               {/* Timeline Items */}
               <div className="relative pl-6 border-l border-[#ebebeb] space-y-7">
                 <div>
-                  <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#171717] border-2 border-white"></div>
+                  <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#171717] border-2 border-white flex items-center justify-center">
+                    <span className="pulse-beacon absolute -inset-1 rounded-full bg-[#171717]/25 pointer-events-none"></span>
+                  </div>
                   <span className="text-xs font-mono text-[#8f8f8f] uppercase font-medium">2023 — Present</span>
                   <h4 className="text-base font-semibold text-[#171717] mt-0.5">BS Software Engineering (6th Semester)</h4>
                   <p className="text-sm text-[#4d4d4d] mt-1 leading-normal">UBIT, University of Karachi — Data Structures, Algorithms, Software Architecture & Distributed Systems.</p>
                 </div>
 
                 <div>
-                  <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#171717] border-2 border-white"></div>
+                  <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#171717] border-2 border-white flex items-center justify-center">
+                    <span className="pulse-beacon absolute -inset-1 rounded-full bg-[#171717]/25 pointer-events-none"></span>
+                  </div>
                   <span className="text-xs font-mono text-[#8f8f8f] uppercase font-medium">In Progress</span>
                   <h4 className="text-base font-semibold text-[#171717] mt-0.5">AI, Web 3.0 & Metaverse Specialization</h4>
                   <p className="text-sm text-[#4d4d4d] mt-1 leading-normal">Governor Sindh IT Initiative (GIAIC) — Deep-dive into Agentic AI, Next.js, and LLM integrations.</p>
